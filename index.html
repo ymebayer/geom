@@ -1,0 +1,2133 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>עוֹלַם הַצּוּרוֹת הַקָּסוּם - היקף, שטח ונפח לילדים!</title>
+  <!-- Google Fonts: Fredoka & Varela Round -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Varela+Round&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Fredoka', 'Varela Round', 'sans-serif'],
+          },
+          colors: {
+            kid: {
+              yellow: '#FFC837',
+              orange: '#FF8008',
+              coral: '#FF4B4B',
+              pink: '#FF6492',
+              green: '#58CC02',
+              greenDark: '#46A302',
+              teal: '#20D3C2',
+              blue: '#1CB0F6',
+              blueDark: '#1899D6',
+              purple: '#CE82FF',
+              purpleDark: '#A855F7',
+              indigo: '#5A5FE0',
+              cream: '#FFF9E6',
+              darkText: '#3C3C3C'
+            }
+          },
+          boxShadow: {
+            'btn-green': '0 6px 0 #46A302',
+            'btn-green-active': '0 2px 0 #46A302',
+            'btn-blue': '0 6px 0 #1899D6',
+            'btn-blue-active': '0 2px 0 #1899D6',
+            'btn-coral': '0 6px 0 #D93B3B',
+            'btn-coral-active': '0 2px 0 #D93B3B',
+            'btn-purple': '0 6px 0 #9333EA',
+            'btn-purple-active': '0 2px 0 #9333EA',
+            'btn-yellow': '0 6px 0 #E5A300',
+            'btn-yellow-active': '0 2px 0 #E5A300',
+            'btn-white': '0 5px 0 #E2E8F0',
+            'btn-white-active': '0 2px 0 #E2E8F0',
+            'card-game': '0 10px 0 rgba(0, 0, 0, 0.07), 0 20px 25px -5px rgba(0, 0, 0, 0.05)',
+            'bubble': '0 6px 0 rgba(0,0,0,0.06)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Fredoka', 'Varela Round', sans-serif;
+      user-select: none;
+      -webkit-user-select: none;
+      background-color: #F7F9FD;
+      background-image: 
+        radial-gradient(#E2E8F0 1.2px, transparent 1.2px), 
+        radial-gradient(#E2E8F0 1.2px, #F7F9FD 1.2px);
+      background-size: 28px 28px;
+      background-position: 0 0, 14px 14px;
+      min-height: 100vh;
+    }
+
+    /* 3D Duolingo-style Tactile Button press */
+    .tactile-btn {
+      transition: all 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .tactile-btn:hover {
+      filter: brightness(1.05);
+      transform: translateY(-2px);
+    }
+    .tactile-btn:active {
+      transform: translateY(4px) !important;
+    }
+
+    /* Ant March on perimeter animation */
+    @keyframes marchDash {
+      to {
+        stroke-dashoffset: -40;
+      }
+    }
+    .ant-track {
+      stroke: #FF4B4B !important;
+      stroke-width: 6px !important;
+      stroke-dasharray: 8, 8;
+      animation: marchDash 0.8s linear infinite;
+      filter: drop-shadow(0 0 6px rgba(255, 75, 75, 0.7));
+    }
+
+    /* Mascot Bobbing */
+    @keyframes mascotFloat {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-7px) rotate(2deg); }
+    }
+    .mascot-bounce {
+      animation: mascotFloat 3.5s ease-in-out infinite;
+    }
+
+    /* Mascot Eye Blink */
+    @keyframes blink {
+      0%, 90%, 100% { transform: scaleY(1); }
+      95% { transform: scaleY(0.1); }
+    }
+    .mascot-eye {
+      transform-origin: center;
+      animation: blink 4s infinite;
+    }
+
+    /* Custom range slider */
+    input[type=range] {
+      -webkit-appearance: none;
+      background: #E2E8F0;
+      border-radius: 9999px;
+      height: 14px;
+      outline: none;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #58CC02;
+      border: 4px solid white;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+      cursor: pointer;
+      transition: transform 0.15s ease, background-color 0.2s;
+    }
+    input[type=range]::-webkit-slider-thumb:hover {
+      transform: scale(1.18);
+      background: #46A302;
+    }
+
+    /* Confetti Canvas */
+    #confettiCanvas {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 9999;
+    }
+
+    /* Ant Walking on SVG */
+    #runnerAnt {
+      transition: transform 0.05s linear;
+    }
+  </style>
+</head>
+<body class="text-kid-darkText p-2 sm:p-4 md:p-6 flex flex-col justify-between">
+
+  <!-- Confetti Canvas -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- ================= TOP HEADER ================= -->
+  <header class="max-w-6xl mx-auto w-full mb-4">
+    <div class="bg-white rounded-3xl p-3 sm:p-5 border-3 border-slate-200/80 shadow-card-game flex flex-wrap items-center justify-between gap-3">
+      
+      <!-- Brand & Title with Mini Shape Friends -->
+      <div class="flex items-center gap-3">
+        <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-kid-yellow to-kid-orange flex items-center justify-center shadow-btn-yellow text-white text-3xl transform -rotate-3 hover:rotate-6 transition">
+          <i class="fa-solid fa-shapes"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-slate-800">
+              עוֹלַם הַצּוּרוֹת הַקָּסוּם!
+            </h1>
+            <span class="inline-flex items-center text-xl animate-bounce">✨</span>
+          </div>
+          <p class="text-xs sm:text-sm font-semibold text-slate-500">
+            הַרְפַּתְקַת גֵּאוֹמֶטְרִיָּה: הֶקֵּף, שֶׁטַח וְנֶפַח בְּכֵיף!
+          </p>
+        </div>
+      </div>
+
+      <!-- Header Badges & Actions -->
+      <div class="flex items-center gap-3">
+        <!-- Sound toggle -->
+        <button id="soundToggleBtn" onclick="toggleAudio()" class="tactile-btn w-12 h-12 rounded-2xl bg-amber-100 hover:bg-amber-200 text-amber-800 flex items-center justify-center border-2 border-amber-300 shadow-btn-white active:shadow-btn-white-active active:translate-y-1" title="הפעל / השתק צלילים">
+          <i id="soundIcon" class="fa-solid fa-volume-high text-xl"></i>
+        </button>
+
+        <!-- Star Counter -->
+        <div class="flex items-center gap-2.5 bg-gradient-to-r from-amber-50 to-yellow-100 border-2 border-amber-300 px-4 py-2 rounded-2xl shadow-bubble">
+          <div class="w-8 h-8 rounded-xl bg-amber-400 flex items-center justify-center text-white shadow-sm">
+            <i class="fa-solid fa-star text-lg drop-shadow"></i>
+          </div>
+          <div class="text-right">
+            <span class="text-[10px] block font-bold text-amber-800 leading-none">כּוֹכָבִים</span>
+            <span id="headerStars" class="font-black text-amber-900 text-xl font-mono">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN GAME NAVIGATION TABS (Duolingo Style Buttons) -->
+    <nav class="mt-4 grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3">
+      
+      <!-- Tab 1: 2D -->
+      <button onclick="switchTab('tab2D')" id="nav-tab2D" class="tactile-btn nav-btn active bg-kid-coral text-white py-3 px-3 rounded-2xl font-black flex items-center justify-center gap-2.5 shadow-btn-coral active:shadow-btn-coral-active border-2 border-red-400">
+        <!-- 2D Shape Icon (Circle + Square) -->
+        <svg class="w-7 h-7 filter drop-shadow" viewBox="0 0 36 36" fill="none">
+          <rect x="3" y="10" width="18" height="18" rx="4" fill="#FFC837" stroke="#FFF" stroke-width="2"/>
+          <circle cx="24" cy="16" r="9" fill="#20D3C2" stroke="#FFF" stroke-width="2"/>
+        </svg>
+        <span class="text-sm sm:text-base">הֶקֵּף וְשֶׁטַח (דוּ-מְמַד)</span>
+      </button>
+
+      <!-- Tab 2: 3D Volume -->
+      <button onclick="switchTab('tab3D')" id="nav-tab3D" class="tactile-btn nav-btn bg-white hover:bg-teal-50 text-slate-700 py-3 px-3 rounded-2xl font-black flex items-center justify-center gap-2.5 shadow-btn-white active:shadow-btn-white-active border-2 border-slate-200">
+        <!-- 3D Cube Icon -->
+        <svg class="w-7 h-7 filter drop-shadow" viewBox="0 0 36 36">
+          <polygon points="18,4 32,11 18,18 4,11" fill="#58CC02" stroke="#2B7A00" stroke-width="1.5"/>
+          <polygon points="4,11 18,18 18,32 4,25" fill="#20D3C2" stroke="#0E7E73" stroke-width="1.5"/>
+          <polygon points="32,11 32,25 18,32 18,18" fill="#1CB0F6" stroke="#0E6592" stroke-width="1.5"/>
+        </svg>
+        <span class="text-sm sm:text-base">נֶפַח (תְּלַת-מְמַד)</span>
+      </button>
+
+      <!-- Tab 3: Game -->
+      <button onclick="switchTab('tabGame')" id="nav-tabGame" class="tactile-btn nav-btn bg-white hover:bg-purple-50 text-slate-700 py-3 px-3 rounded-2xl font-black flex items-center justify-center gap-2.5 shadow-btn-white active:shadow-btn-white-active border-2 border-slate-200">
+        <svg class="w-7 h-7 filter drop-shadow" viewBox="0 0 36 36" fill="none">
+          <rect x="4" y="8" width="28" height="20" rx="8" fill="#CE82FF" stroke="#8A34CC" stroke-width="2"/>
+          <circle cx="12" cy="18" r="3" fill="#FFF"/>
+          <rect x="21" y="14" width="8" height="3" rx="1.5" fill="#FFC837"/>
+          <rect x="23.5" y="11.5" width="3" height="8" rx="1.5" fill="#FFC837"/>
+        </svg>
+        <span class="text-sm sm:text-base">מִשְׂחַק הָאֶתְגָּר</span>
+      </button>
+
+      <!-- Tab 4: Formula Book -->
+      <button onclick="switchTab('tabFormula')" id="nav-tabFormula" class="tactile-btn nav-btn bg-white hover:bg-amber-50 text-slate-700 py-3 px-3 rounded-2xl font-black flex items-center justify-center gap-2.5 shadow-btn-white active:shadow-btn-white-active border-2 border-slate-200">
+        <svg class="w-7 h-7 filter drop-shadow" viewBox="0 0 36 36" fill="none">
+          <path d="M6 8C6 6.3 7.3 5 9 5H30V29H9C7.3 29 6 27.7 6 26V8Z" fill="#FFC837" stroke="#C48000" stroke-width="2"/>
+          <line x1="12" y1="12" x2="24" y2="12" stroke="#FFF" stroke-width="2" stroke-linecap="round"/>
+          <line x1="12" y1="17" x2="21" y2="17" stroke="#FFF" stroke-width="2" stroke-linecap="round"/>
+          <line x1="12" y1="22" x2="18" y2="22" stroke="#FFF" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span class="text-sm sm:text-base">לוּחַ הַנּוּסְחָאוֹת</span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ================= MASCOT BANNER: "צורוני" ================= -->
+  <section class="max-w-6xl mx-auto w-full mb-5">
+    <div class="bg-gradient-to-r from-amber-100 via-yellow-50 to-orange-100 border-3 border-amber-300 rounded-3xl p-3 sm:p-4 shadow-bubble flex items-center gap-3 sm:gap-4 relative overflow-hidden">
+      
+      <!-- Mascot Avatar SVG: Tzuroni the Shape Bot -->
+      <div class="w-16 h-16 sm:w-20 sm:h-20 flex-shrink-0 mascot-bounce">
+        <svg viewBox="0 0 100 100" class="w-full h-full filter drop-shadow-md">
+          <!-- Antenna -->
+          <line x1="50" y1="20" x2="50" y2="6" stroke="#CE82FF" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="50" cy="5" r="6" fill="#FFC837" stroke="#CE82FF" stroke-width="2"/>
+          <!-- Body / Head (Rounded Square) -->
+          <rect x="15" y="20" width="70" height="70" rx="22" fill="#5A5FE0" stroke="#3D42C0" stroke-width="4"/>
+          <rect x="22" y="26" width="56" height="56" rx="16" fill="#787DF5"/>
+          <!-- Screen Face -->
+          <rect x="27" y="32" width="46" height="34" rx="10" fill="#1E2055"/>
+          <!-- Big Cute Eyes with shine -->
+          <g class="mascot-eye">
+            <circle cx="39" cy="48" r="6" fill="#20D3C2"/>
+            <circle cx="41" cy="46" r="2" fill="#FFF"/>
+            <circle cx="61" cy="48" r="6" fill="#20D3C2"/>
+            <circle cx="63" cy="46" r="2" fill="#FFF"/>
+          </g>
+          <!-- Cheeks -->
+          <ellipse cx="33" cy="56" rx="3" ry="2" fill="#FF6492" opacity="0.8"/>
+          <ellipse cx="67" cy="56" rx="3" ry="2" fill="#FF6492" opacity="0.8"/>
+          <!-- Happy Mouth -->
+          <path d="M 44 54 Q 50 60 56 54" stroke="#FFF" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <!-- Body Feet -->
+          <rect x="30" y="88" width="12" height="7" rx="3" fill="#3D42C0"/>
+          <rect x="58" y="88" width="12" height="7" rx="3" fill="#3D42C0"/>
+        </svg>
+      </div>
+
+      <!-- Speech Bubble -->
+      <div class="flex-1 bg-white p-3 sm:p-3.5 rounded-2xl border-2 border-amber-200 shadow-sm relative">
+        <div class="absolute -right-2.5 top-1/2 -translate-y-1/2 w-0 h-0 border-y-8 border-y-transparent border-l-8 border-l-white"></div>
+        <div class="flex items-center justify-between gap-2">
+          <span class="text-xs font-black text-amber-700 bg-amber-100 px-2 py-0.5 rounded-lg inline-flex items-center gap-1">
+            🤖 צוּרוֹנִי הַמַּדְרִיךְ:
+          </span>
+          <span id="mascotMoodBadge" class="text-xs text-slate-400">חָכָם וְסַקְרָן 💡</span>
+        </div>
+        <p id="mascotMessage" class="text-sm sm:text-base font-bold text-slate-700 mt-1 leading-snug">
+          שָׁלוֹם אֲלוּפִים! בַּחֲרוּ צוּרָה, הַזִּיזוּ אֶת הַמַּדִּים וּרְאוּ אֵיךְ הַשֶּׁטַח וְהַהֶקֵּף מִשְׁתַּנִּים פְּלָאִים!
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= MAIN VIEWPORT ================= -->
+  <main class="max-w-6xl mx-auto w-full flex-1">
+
+    <!-- =========================================================
+         TAB 1: 2D PERIMETER & AREA (היקף ושטח)
+         ========================================================= -->
+    <section id="tab2D" class="tab-content block">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        
+        <!-- Controls Column -->
+        <div class="lg:col-span-5 flex flex-col gap-4">
+          
+          <!-- Shape Selector with Custom Illustrated Characters -->
+          <div class="bg-white p-4 sm:p-5 rounded-3xl border-3 border-slate-200 shadow-card-game">
+            <h2 class="text-base sm:text-lg font-black text-slate-800 mb-3 flex items-center gap-2">
+              <span class="w-7 h-7 rounded-full bg-kid-coral text-white flex items-center justify-center text-sm font-black shadow-sm">1</span>
+              בַּחֲרוּ צוּרָה לַחֲקִירָה:
+            </h2>
+
+            <div class="grid grid-cols-5 gap-2">
+              <!-- Square -->
+              <button onclick="selectShape2D('square')" id="btn-square" class="tactile-btn shape-2d-btn p-2 rounded-2xl border-3 border-kid-coral bg-rose-50 flex flex-col items-center gap-1 transition shadow-btn-coral">
+                <svg class="w-10 h-10" viewBox="0 0 50 50">
+                  <rect x="7" y="7" width="36" height="36" rx="8" fill="#FFC837" stroke="#E59800" stroke-width="2.5"/>
+                  <!-- Happy face -->
+                  <circle cx="20" cy="22" r="3" fill="#3C3C3C"/>
+                  <circle cx="30" cy="22" r="3" fill="#3C3C3C"/>
+                  <path d="M 20 28 Q 25 33 30 28" stroke="#3C3C3C" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                </svg>
+                <span class="text-xs font-black text-slate-800">רִבּוּעַ</span>
+              </button>
+
+              <!-- Rectangle -->
+              <button onclick="selectShape2D('rectangle')" id="btn-rectangle" class="tactile-btn shape-2d-btn p-2 rounded-2xl border-3 border-slate-200 bg-white flex flex-col items-center gap-1 transition hover:border-kid-blue shadow-btn-white">
+                <svg class="w-10 h-10" viewBox="0 0 50 50">
+                  <rect x="4" y="12" width="42" height="26" rx="6" fill="#1CB0F6" stroke="#1282B7" stroke-width="2.5"/>
+                  <!-- Smile -->
+                  <circle cx="18" cy="23" r="3" fill="#FFF"/>
+                  <circle cx="32" cy="23" r="3" fill="#FFF"/>
+                  <path d="M 21 28 Q 25 32 29 28" stroke="#FFF" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                </svg>
+                <span class="text-xs font-black text-slate-800">מַלְבֵּן</span>
+              </button>
+
+              <!-- Triangle -->
+              <button onclick="selectShape2D('triangle')" id="btn-triangle" class="tactile-btn shape-2d-btn p-2 rounded-2xl border-3 border-slate-200 bg-white flex flex-col items-center gap-1 transition hover:border-kid-green shadow-btn-white">
+                <svg class="w-10 h-10" viewBox="0 0 50 50">
+                  <polygon points="25,6 45,42 5,42" fill="#58CC02" stroke="#3F9102" stroke-width="2.5" stroke-linejoin="round"/>
+                  <circle cx="21" cy="28" r="3" fill="#FFF"/>
+                  <circle cx="29" cy="28" r="3" fill="#FFF"/>
+                  <path d="M 22 34 Q 25 37 28 34" stroke="#FFF" stroke-width="2" fill="none" stroke-linecap="round"/>
+                </svg>
+                <span class="text-xs font-black text-slate-800">מְשֻׁלָּשׁ</span>
+              </button>
+
+              <!-- Circle -->
+              <button onclick="selectShape2D('circle')" id="btn-circle" class="tactile-btn shape-2d-btn p-2 rounded-2xl border-3 border-slate-200 bg-white flex flex-col items-center gap-1 transition hover:border-kid-pink shadow-btn-white">
+                <svg class="w-10 h-10" viewBox="0 0 50 50">
+                  <circle cx="25" cy="25" r="20" fill="#FF6492" stroke="#D83E6C" stroke-width="2.5"/>
+                  <circle cx="19" cy="21" r="3" fill="#FFF"/>
+                  <circle cx="31" cy="21" r="3" fill="#FFF"/>
+                  <path d="M 19 28 Q 25 34 31 28" stroke="#FFF" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                </svg>
+                <span class="text-xs font-black text-slate-800">מַעְגָּל</span>
+              </button>
+
+              <!-- Trapezoid -->
+              <button onclick="selectShape2D('trapezoid')" id="btn-trapezoid" class="tactile-btn shape-2d-btn p-2 rounded-2xl border-3 border-slate-200 bg-white flex flex-col items-center gap-1 transition hover:border-kid-purple shadow-btn-white">
+                <svg class="w-10 h-10" viewBox="0 0 50 50">
+                  <polygon points="14,12 36,12 46,38 4,38" fill="#CE82FF" stroke="#9A41D6" stroke-width="2.5" stroke-linejoin="round"/>
+                  <circle cx="21" cy="24" r="3" fill="#FFF"/>
+                  <circle cx="29" cy="24" r="3" fill="#FFF"/>
+                  <path d="M 22 30 Q 25 33 28 30" stroke="#FFF" stroke-width="2" fill="none" stroke-linecap="round"/>
+                </svg>
+                <span class="text-xs font-black text-slate-800">טְרַפֵּז</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Dynamic Sliders -->
+          <div class="bg-white p-4 sm:p-5 rounded-3xl border-3 border-slate-200 shadow-card-game">
+            <h2 class="text-base sm:text-lg font-black text-slate-800 mb-3 flex items-center gap-2">
+              <span class="w-7 h-7 rounded-full bg-kid-blue text-white flex items-center justify-center text-sm font-black shadow-sm">2</span>
+              שַׁנּוּ אֶת הַמִּדּוֹת:
+            </h2>
+            <div id="sliders2DContainer" class="space-y-4">
+              <!-- Sliders injected dynamically -->
+            </div>
+          </div>
+
+          <!-- Action Interactive Buttons: Perimeter Ant & Area Tiles -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <button id="togglePerimeterBtn" onclick="togglePerimeterRun()" class="tactile-btn py-3 px-4 rounded-2xl bg-kid-coral text-white font-black text-sm flex items-center justify-center gap-2 shadow-btn-coral border-2 border-red-400">
+              <span class="text-lg">🐜</span>
+              <span>רוּץ עַל הַהֶקֵּף!</span>
+            </button>
+            <button id="toggleAreaBtn" onclick="toggleAreaHighlight()" class="tactile-btn py-3 px-4 rounded-2xl bg-kid-green text-white font-black text-sm flex items-center justify-center gap-2 shadow-btn-green border-2 border-green-600">
+              <span class="text-lg">🟩</span>
+              <span>מַלֵּא בַּלָּטוֹת שֶׁטַח!</span>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- SVG Visual Playground & Formula Result Cards -->
+        <div class="lg:col-span-7 flex flex-col gap-4">
+          
+          <!-- Playground Canvas Box -->
+          <div class="bg-white p-4 sm:p-5 rounded-3xl border-3 border-slate-200 shadow-card-game relative flex flex-col items-center justify-center min-h-[350px]">
+            
+            <!-- Shape Title Badge Inside Canvas -->
+            <div class="absolute top-4 right-4 flex items-center gap-2 bg-slate-100 border border-slate-200 px-3 py-1 rounded-full text-xs font-black text-slate-700">
+              <span id="canvasShapeIcon">🟧</span>
+              <span id="canvasShapeTitle">רִבּוּעַ חָמוּד</span>
+            </div>
+
+            <!-- Ant Runner Tooltip -->
+            <div id="antSpeech" class="absolute top-4 left-4 bg-red-100 text-red-800 border border-red-300 text-xs font-bold px-3 py-1 rounded-full opacity-0 transition-opacity">
+              נְמָלַת הַהֶקֵּף: "אֲנִי מַקִּיפָה מִסָּבִיב!" 🏃‍♀️
+            </div>
+
+            <!-- Responsive SVG Canvas -->
+            <svg id="svgCanvas2D" class="w-full h-72 sm:h-80 overflow-visible" viewBox="-30 -30 360 260">
+              <defs>
+                <!-- Tile Pattern for Area -->
+                <pattern id="gridTiles" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <rect width="20" height="20" fill="#58CC02" fill-opacity="0.25"/>
+                  <rect width="20" height="20" fill="none" stroke="#58CC02" stroke-width="1.2"/>
+                  <circle cx="10" cy="10" r="1.5" fill="#58CC02"/>
+                </pattern>
+                
+                <!-- Dot Pattern -->
+                <pattern id="playgroundDots" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <circle cx="3" cy="3" r="1.2" fill="#CBD5E1"/>
+                </pattern>
+              </defs>
+
+              <!-- Background board -->
+              <rect x="-30" y="-30" width="360" height="260" fill="url(#playgroundDots)" rx="20"/>
+
+              <!-- Shapes Group -->
+              <g id="shapeGroup2D"></g>
+              <!-- Measure labels & arrows -->
+              <g id="measureGroup2D"></g>
+
+              <!-- Running Ant Element on Track -->
+              <g id="runnerAnt" style="display: none;">
+                <circle cx="0" cy="0" r="8" fill="#FF4B4B"/>
+                <circle cx="0" cy="0" r="4" fill="#FFFFFF"/>
+                <circle cx="-3" cy="-5" r="2" fill="#1E2055"/>
+                <circle cx="3" cy="-5" r="2" fill="#1E2055"/>
+              </g>
+            </svg>
+
+            <!-- Bottom Guidance Helper -->
+            <div class="w-full mt-3 bg-gradient-to-r from-amber-50 to-emerald-50 border border-amber-200 rounded-2xl p-2.5 text-center text-xs sm:text-sm font-bold text-slate-700 flex items-center justify-center gap-2">
+              <span>💡</span>
+              <span id="shapeInsight">הַהֶקֵּף הוּא סַךְ כָּל הַגָּדֵר מִסָּבִיב, וְהַשֶּׁטַח הוּא כַּמּוּת הַמִּשְׁבָּצוֹת שֶׁבִּפְנִים!</span>
+            </div>
+
+          </div>
+
+          <!-- Formula Step Calculation Cards -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            
+            <!-- Perimeter Card -->
+            <div class="bg-gradient-to-br from-rose-50 to-red-100 border-3 border-red-200 p-4 rounded-3xl shadow-bubble">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-sm font-black text-red-900 flex items-center gap-1.5">
+                  <span class="text-xl">📏</span> הַהֶקֵּף (P) מִסָּבִיב:
+                </span>
+                <span class="text-[11px] font-bold bg-white text-red-700 px-2.5 py-0.5 rounded-full border border-red-200">
+                  אָרְכֵי הַצְּלָעוֹת
+                </span>
+              </div>
+              <div id="perimeterFormulaText" class="text-xs font-mono font-bold text-red-800 bg-white/80 p-2.5 rounded-2xl border border-red-200 mb-2">
+                P = ...
+              </div>
+              <div class="flex items-baseline justify-between">
+                <span class="text-xs font-bold text-red-700">סַהַ"כ הֶקֵּף:</span>
+                <span class="text-2xl sm:text-3xl font-black text-red-900 font-mono" id="perimeterResult">
+                  0 ס״מ
+                </span>
+              </div>
+            </div>
+
+            <!-- Area Card -->
+            <div class="bg-gradient-to-br from-emerald-50 to-green-100 border-3 border-green-200 p-4 rounded-3xl shadow-bubble">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-sm font-black text-green-900 flex items-center gap-1.5">
+                  <span class="text-xl">🟩</span> הַשֶּׁטַח (S) בִּפְנִים:
+                </span>
+                <span class="text-[11px] font-bold bg-white text-green-700 px-2.5 py-0.5 rounded-full border border-green-200">
+                  כַּמּוּת הַבַּלָּטוֹת
+                </span>
+              </div>
+              <div id="areaFormulaText" class="text-xs font-mono font-bold text-green-800 bg-white/80 p-2.5 rounded-2xl border border-green-200 mb-2">
+                S = ...
+              </div>
+              <div class="flex items-baseline justify-between">
+                <span class="text-xs font-bold text-green-700">סַהַ"כ שֶׁטַח:</span>
+                <span class="text-2xl sm:text-3xl font-black text-green-900 font-mono" id="areaResult">
+                  0 סמ״ר
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =========================================================
+         TAB 2: 3D VOLUME (רובריקת נפח תלת-ממדית נפרדת)
+         ========================================================= -->
+    <section id="tab3D" class="tab-content hidden">
+      
+      <!-- Big Hero Banner for 3D Volume -->
+      <div class="bg-gradient-to-r from-indigo-900 via-purple-900 to-indigo-800 text-white p-5 sm:p-7 rounded-3xl border-3 border-indigo-700 shadow-card-game mb-5 relative overflow-hidden">
+        <div class="relative z-10 max-w-2xl">
+          <div class="inline-flex items-center gap-2 bg-teal-400/20 text-teal-300 px-3 py-1 rounded-full text-xs font-black border border-teal-400/40 mb-2">
+            <svg class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4 9.236V15a1 1 0 00.553.894l4 2A1 1 0 0010 17v-5.764a1 1 0 00-.553-.894l-4-2A1 1 0 004 9.236z"/>
+            </svg>
+            רוּבְּרִיקָה מְיֻחֶדֶת: עֲבוּר תְּלַת-מְמַד (3D)!
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black mb-1.5 flex items-center gap-2">
+            <span>מָה זֶה בִּכְלָל נֶפַח?</span>
+            <span class="text-3xl">📦</span>
+          </h2>
+          <p class="text-indigo-100 text-sm sm:text-base leading-relaxed">
+            נֶפַח הוּא <strong class="text-kid-yellow">כַּמּוּת הַמָּקוֹם</strong> שֶׁגּוּף תּוֹפֵס בַּמֶּרְחָב! 
+            דַּמְיְנוּ כַּמָּה קֻבְיוֹת סֻכָּר אוֹ כּוֹסוֹת מַיִם אֶפְשָׁר לְהַכְנִיס בְּתוֹךְ קֻפְסָה:
+            <span class="bg-white/20 px-2.5 py-0.5 rounded-lg text-teal-300 font-black inline-block mt-1">נֶפַח = שֶׁטַח הָרִצְפָּה (הַבָּסִיס) × הַגֹּבַהּ</span>.
+          </p>
+        </div>
+        <!-- Decorative Background Cube -->
+        <i class="fa-solid fa-cube text-white/5 text-[180px] absolute -left-10 -bottom-10 pointer-events-none"></i>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        
+        <!-- Controls Column 3D -->
+        <div class="lg:col-span-5 flex flex-col gap-4">
+          
+          <!-- 3D Shape Picker with Custom 3D Badges -->
+          <div class="bg-white p-4 sm:p-5 rounded-3xl border-3 border-slate-200 shadow-card-game">
+            <h2 class="text-base sm:text-lg font-black text-slate-800 mb-3 flex items-center gap-2">
+              <span class="w-7 h-7 rounded-full bg-teal-500 text-white flex items-center justify-center text-sm font-black shadow-sm">1</span>
+              בַּחֲרוּ גּוּף תְּלַת-מְמַדִּי:
+            </h2>
+
+            <div class="grid grid-cols-4 gap-2">
+              
+              <!-- Cube -->
+              <button onclick="selectShape3D('cube')" id="btn3d-cube" class="tactile-btn shape-3d-btn p-2 rounded-2xl border-3 border-teal-500 bg-teal-50 flex flex-col items-center gap-1.5 transition shadow-btn-green">
+                <svg class="w-10 h-10" viewBox="0 0 50 50">
+                  <polygon points="25,5 44,14 25,23 6,14" fill="#20D3C2" stroke="#0E7E73" stroke-width="1.8"/>
+                  <polygon points="6,14 25,23 25,43 6,34" fill="#14B8A6" stroke="#0E7E73" stroke-width="1.8"/>
+                  <polygon points="44,14 44,34 25,43 25,23" fill="#0D9488" stroke="#0E7E73" stroke-width="1.8"/>
+                  <circle cx="25" cy="23" r="2.5" fill="#FFF"/>
+                </svg>
+                <span class="text-xs font-black text-slate-800">קֻבִּיָּה</span>
+              </button>
+
+              <!-- Cuboid -->
+              <button onclick="selectShape3D('cuboid')" id="btn3d-cuboid" class="tactile-btn shape-3d-btn p-2 rounded-2xl border-3 border-slate-200 bg-white flex flex-col items-center gap-1.5 transition hover:border-teal-400 shadow-btn-white">
+                <svg class="w-10 h-10" viewBox="0 0 50 50">
+                  <polygon points="20,8 46,13 32,20 6,15" fill="#58CC02" stroke="#3A8202" stroke-width="1.8"/>
+                  <polygon points="6,15 32,20 32,42 6,37" fill="#46A302" stroke="#3A8202" stroke-width="1.8"/>
+                  <polygon points="46,13 46,35 32,42 32,20" fill="#367C02" stroke="#3A8202" stroke-width="1.8"/>
+                </svg>
+                <span class="text-xs font-black text-slate-800">תֵּבָה</span>
+              </button>
+
+              <!-- Cylinder -->
+              <button onclick="selectShape3D('cylinder')" id="btn3d-cylinder" class="tactile-btn shape-3d-btn p-2 rounded-2xl border-3 border-slate-200 bg-white flex flex-col items-center gap-1.5 transition hover:border-teal-400 shadow-btn-white">
+                <svg class="w-10 h-10" viewBox="0 0 50 50">
+                  <ellipse cx="25" cy="14" rx="16" ry="6" fill="#CE82FF" stroke="#8E35CE" stroke-width="1.8"/>
+                  <path d="M 9 14 L 9 36 A 16 6 0 0 0 41 36 L 41 14 Z" fill="#A855F7" stroke="#8E35CE" stroke-width="1.8"/>
+                  <ellipse cx="25" cy="36" rx="16" ry="6" fill="none" stroke="#E9D5FF" stroke-width="1.5" stroke-dasharray="3,2"/>
+                </svg>
+                <span class="text-xs font-black text-slate-800">גָּלִיל</span>
+              </button>
+
+              <!-- Pyramid -->
+              <button onclick="selectShape3D('pyramid')" id="btn3d-pyramid" class="tactile-btn shape-3d-btn p-2 rounded-2xl border-3 border-slate-200 bg-white flex flex-col items-center gap-1.5 transition hover:border-teal-400 shadow-btn-white">
+                <svg class="w-10 h-10" viewBox="0 0 50 50">
+                  <polygon points="25,6 7,38 35,43" fill="#FFC837" stroke="#D98A00" stroke-width="1.8"/>
+                  <polygon points="25,6 35,43 45,34" fill="#FF8008" stroke="#D98A00" stroke-width="1.8"/>
+                </svg>
+                <span class="text-xs font-black text-slate-800">פִּירָמִידָה</span>
+              </button>
+
+            </div>
+          </div>
+
+          <!-- Dynamic 3D Dimensions -->
+          <div class="bg-white p-4 sm:p-5 rounded-3xl border-3 border-slate-200 shadow-card-game">
+            <h2 class="text-base sm:text-lg font-black text-slate-800 mb-3 flex items-center gap-2">
+              <span class="w-7 h-7 rounded-full bg-purple-500 text-white flex items-center justify-center text-sm font-black shadow-sm">2</span>
+              שַׁנּוּ מְמַדִּים:
+            </h2>
+            <div id="sliders3DContainer" class="space-y-4">
+              <!-- Sliders injected by JS -->
+            </div>
+          </div>
+
+          <!-- Fill Sugar Cubes Toggle Button -->
+          <button id="toggleCubesBtn" onclick="toggleCubeGrid()" class="tactile-btn py-3 px-4 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-black text-sm flex items-center justify-center gap-2 shadow-btn-purple border-2 border-indigo-400">
+            <span class="text-xl">🧊</span>
+            <span id="cubeToggleText">מַלֵּא בְּקֻבְיוֹת סֻכָּר (הַמְחָשָׁה)</span>
+          </button>
+
+        </div>
+
+        <!-- 3D Isometric Visualization & Calculation -->
+        <div class="lg:col-span-7 flex flex-col gap-4">
+          
+          <div class="bg-slate-900 text-white p-4 sm:p-5 rounded-3xl border-3 border-slate-800 shadow-card-game relative flex flex-col items-center justify-center min-h-[360px] overflow-hidden">
+            
+            <!-- Isometric Badge -->
+            <div class="absolute top-4 left-4 bg-teal-400/20 text-teal-300 border border-teal-400/40 px-3 py-1 rounded-full text-xs font-black">
+              הַדְמָיָה אִיזוֹמֶטְרִית תְּלַת-מְמַדִּית ✨
+            </div>
+
+            <div class="absolute top-4 right-4 flex items-center gap-1.5 text-xs text-amber-300 bg-amber-400/10 px-3 py-1 rounded-full border border-amber-400/30 font-bold">
+              <span id="shape3DTitle">קֻבִּיָּה</span>
+            </div>
+
+            <!-- SVG 3D Canvas -->
+            <svg id="svgCanvas3D" class="w-full h-72 sm:h-80 overflow-visible" viewBox="-180 -160 360 320">
+              <defs>
+                <linearGradient id="gTop" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#20D3C2"/>
+                  <stop offset="100%" stop-color="#14B8A6"/>
+                </linearGradient>
+                <linearGradient id="gLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#0D9488"/>
+                  <stop offset="100%" stop-color="#042F2E"/>
+                </linearGradient>
+                <linearGradient id="gRight" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#115E59"/>
+                  <stop offset="100%" stop-color="#021E1D"/>
+                </linearGradient>
+                
+                <linearGradient id="cylGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#14B8A6"/>
+                  <stop offset="50%" stop-color="#20D3C2"/>
+                  <stop offset="100%" stop-color="#0F766E"/>
+                </linearGradient>
+              </defs>
+
+              <g id="group3D"></g>
+            </svg>
+
+            <!-- Bottom Volume Insight -->
+            <div class="mt-2 text-xs text-slate-300 bg-white/10 backdrop-blur-md px-4 py-2 rounded-xl text-center w-full border border-white/10">
+              🍬 חֲשָׁבוּ עַל זֶה: נֶפַח הוּא כַּמָּה שִׁכְבוֹת מִשְׁבָּצוֹת אָנוּ עוֹרְמִים זוֹ עַל גַּבֵּי זוֹ לַגֹּבַהּ!
+            </div>
+          </div>
+
+          <!-- Volume Calculation Decomposition -->
+          <div class="bg-white p-4 sm:p-5 rounded-3xl border-3 border-slate-200 shadow-card-game">
+            <h3 class="text-sm sm:text-base font-black text-slate-800 mb-3 flex items-center gap-2">
+              <span class="w-7 h-7 rounded-xl bg-teal-500 text-white flex items-center justify-center text-sm font-black">🧪</span>
+              נוּסְחַת הַנֶּפַח בִּשְׁנֵי צְעָדִים קַלִּים:
+            </h3>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-center items-center">
+              
+              <div class="p-3 rounded-2xl bg-teal-50 border-2 border-teal-200">
+                <span class="text-xs font-black text-teal-700 block mb-1">1. שֶׁטַח הָרִצְפָּה (הַבָּסִיס)</span>
+                <span id="baseAreaText" class="text-lg font-black text-teal-900 font-mono">0 סמ״ר</span>
+              </div>
+
+              <div class="text-2xl font-black text-slate-400">
+                ×
+              </div>
+
+              <div class="p-3 rounded-2xl bg-indigo-50 border-2 border-indigo-200">
+                <span class="text-xs font-black text-indigo-700 block mb-1">2. הַגֹּבַהּ (H)</span>
+                <span id="height3dText" class="text-lg font-black text-indigo-900 font-mono">0 ס״מ</span>
+              </div>
+
+            </div>
+
+            <!-- Volume Total Highlight Card -->
+            <div class="mt-4 p-4 rounded-2xl bg-gradient-to-r from-teal-500 to-emerald-600 text-white flex items-center justify-between shadow-btn-green border-2 border-teal-400">
+              <div>
+                <span class="text-xs text-teal-100 font-bold block">הַנֶּפַח הַכּוֹלֵל (V):</span>
+                <span id="volumeFormulaDisplay" class="text-sm font-mono text-teal-50">V = בָּסִיס × גֹּבַהּ</span>
+              </div>
+              <div class="text-2xl sm:text-3xl font-black text-kid-yellow font-mono" id="volumeTotalResult">
+                0 סמ״ק
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================================================
+         TAB 3: THE CHALLENGE GAME (משחק האלופים)
+         ========================================================= -->
+    <section id="tabGame" class="tab-content hidden">
+      <div class="max-w-3xl mx-auto">
+
+        <!-- Game Status Header -->
+        <div class="bg-white p-4 sm:p-5 rounded-3xl border-3 border-slate-200 shadow-card-game mb-5 flex flex-wrap items-center justify-between gap-3">
+          
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-2xl bg-purple-100 border-2 border-purple-300 text-purple-700 flex items-center justify-center text-2xl shadow-sm">
+              🏆
+            </div>
+            <div>
+              <h2 class="text-lg sm:text-xl font-black text-slate-800">אַלּוּפֵי הַגֵּאוֹמֶטְרִיָּה!</h2>
+              <p class="text-xs font-semibold text-slate-500">עֲנוּ נָכוֹן, אִסְפוּ כּוֹכָבִים וְשִׁבְרוּ שִׂיא!</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <div class="text-center">
+              <span class="text-[10px] uppercase font-black text-slate-400 block">שִׂיא אִישִׁי</span>
+              <span id="bestScoreText" class="font-black text-purple-700 text-lg font-mono">0</span>
+            </div>
+
+            <div class="bg-amber-100 border-2 border-amber-300 px-4 py-2 rounded-2xl flex items-center gap-2 shadow-sm">
+              <i class="fa-solid fa-trophy text-amber-500 text-lg"></i>
+              <span id="quizScoreText" class="font-black text-amber-900 text-xl font-mono">0</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Quiz Question Card -->
+        <div class="bg-white p-5 sm:p-7 rounded-3xl border-3 border-slate-200 shadow-card-game flex flex-col gap-5">
+          
+          <!-- Category & Streaks -->
+          <div class="flex items-center justify-between border-b-2 border-slate-100 pb-3">
+            <span id="questionCategory" class="px-3.5 py-1 rounded-full text-xs font-black bg-purple-100 text-purple-800 border border-purple-200">
+              שְׁאֵלָה 1 • הֶקֵּף
+            </span>
+            <div class="flex items-center gap-1.5" id="streakIcons">
+              <i class="fa-solid fa-fire text-slate-300 text-lg"></i>
+              <i class="fa-solid fa-fire text-slate-300 text-lg"></i>
+              <i class="fa-solid fa-fire text-slate-300 text-lg"></i>
+            </div>
+          </div>
+
+          <!-- Prompt -->
+          <div>
+            <h3 id="questionPrompt" class="text-lg sm:text-xl font-black text-slate-800 leading-snug">
+              מָה הוּא הַהֶקֵּף שֶׁל רִבּוּעַ שֶׁצַּלְעוֹ 6 ס״מ?
+            </h3>
+          </div>
+
+          <!-- Question Illustrated Preview -->
+          <div class="w-full bg-slate-50 rounded-2xl p-3 flex items-center justify-center border-2 border-slate-100 min-h-[160px]">
+            <svg id="quizSvg" class="w-64 h-36 overflow-visible" viewBox="-20 -20 240 160"></svg>
+          </div>
+
+          <!-- Answer Options Grid -->
+          <div id="quizAnswersGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <!-- Dynamically injected -->
+          </div>
+
+          <!-- Feedback Alert -->
+          <div id="quizFeedback" class="hidden p-3.5 rounded-2xl text-center font-black text-sm"></div>
+
+          <!-- Next Button -->
+          <button id="nextQuestionBtn" onclick="nextQuestion()" class="tactile-btn hidden w-full py-3.5 bg-kid-green text-white rounded-2xl font-black text-base shadow-btn-green border-2 border-green-600">
+            לַשְּׁאֵלָה הַבָּאָה! <i class="fa-solid fa-arrow-left mr-2"></i>
+          </button>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================================================
+         TAB 4: FORMULA CARDS WITH ILLUSTRATIONS
+         ========================================================= -->
+    <section id="tabFormula" class="tab-content hidden">
+      <div class="mb-4">
+        <h2 class="text-2xl font-black text-slate-800 flex items-center gap-2">
+          <span>לוּחַ הַנּוּסְחָאוֹת הַמְצֻיָּר</span>
+          <span>📜</span>
+        </h2>
+        <p class="text-xs sm:text-sm font-semibold text-slate-500">
+          כָּל הַנּוּסְחָאוֹת עִם אִיּוּרִים מַרְהִיבִים וְדֻגְמָאוֹת מֵהַחַיִּים!
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        
+        <!-- Card: Square -->
+        <div class="bg-white p-5 rounded-3xl border-3 border-amber-200 shadow-card-game flex flex-col justify-between hover:border-amber-400 transition">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-base font-black text-slate-800 flex items-center gap-2">
+                <svg class="w-6 h-6 inline-block" viewBox="0 0 40 40">
+                  <rect x="5" y="5" width="30" height="30" rx="6" fill="#FFC837" stroke="#E59800" stroke-width="2"/>
+                </svg>
+                רִבּוּעַ
+              </span>
+              <span class="text-[11px] bg-amber-100 text-amber-800 font-black px-2 py-0.5 rounded-lg">דוּ-מְמַד</span>
+            </div>
+            <p class="text-xs text-slate-500 font-semibold mb-3">כָּל 4 הַצְּלָעוֹת שָׁווֹת בְּאָרְכָּן (a).</p>
+            <div class="space-y-2 text-sm bg-amber-50 p-3 rounded-2xl border border-amber-100">
+              <div class="flex justify-between items-center">
+                <span class="font-black text-rose-700">📏 הֶקֵּף:</span>
+                <span class="font-mono font-black text-slate-800">4 × a</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="font-black text-emerald-700">🟩 שֶׁטַח:</span>
+                <span class="font-mono font-black text-slate-800">a × a (צֶלַע בְּרִבּוּעַ)</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-3 text-[11px] font-bold text-slate-400">💡 כְּמוֹ: בַּלָּטָה מְרֻבַּעַת, לוּחַ שַׁחְמָט אוֹ חַלּוֹן.</div>
+        </div>
+
+        <!-- Card: Rectangle -->
+        <div class="bg-white p-5 rounded-3xl border-3 border-blue-200 shadow-card-game flex flex-col justify-between hover:border-blue-400 transition">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-base font-black text-slate-800 flex items-center gap-2">
+                <svg class="w-6 h-6 inline-block" viewBox="0 0 40 40">
+                  <rect x="4" y="10" width="32" height="20" rx="4" fill="#1CB0F6" stroke="#1282B7" stroke-width="2"/>
+                </svg>
+                מַלְבֵּן
+              </span>
+              <span class="text-[11px] bg-blue-100 text-blue-800 font-black px-2 py-0.5 rounded-lg">דוּ-מְמַד</span>
+            </div>
+            <p class="text-xs text-slate-500 font-semibold mb-3">יֵשׁ לוֹ אֹרֶךְ (a) וְרֹחַב (b).</p>
+            <div class="space-y-2 text-sm bg-blue-50 p-3 rounded-2xl border border-blue-100">
+              <div class="flex justify-between items-center">
+                <span class="font-black text-rose-700">📏 הֶקֵּף:</span>
+                <span class="font-mono font-black text-slate-800">2 × (a + b)</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="font-black text-emerald-700">🟩 שֶׁטַח:</span>
+                <span class="font-mono font-black text-slate-800">a × b (אֹרֶךְ × רֹחַב)</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-3 text-[11px] font-bold text-slate-400">💡 כְּמוֹ: מִגְרַשׁ כַּדּוּרֶגֶל, מָסַךְ טֶלֶוִיזְיָה אוֹ דֶּלֶת.</div>
+        </div>
+
+        <!-- Card: Triangle -->
+        <div class="bg-white p-5 rounded-3xl border-3 border-emerald-200 shadow-card-game flex flex-col justify-between hover:border-emerald-400 transition">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-base font-black text-slate-800 flex items-center gap-2">
+                <svg class="w-6 h-6 inline-block" viewBox="0 0 40 40">
+                  <polygon points="20,6 36,34 4,34" fill="#58CC02" stroke="#3F9102" stroke-width="2"/>
+                </svg>
+                מְשֻׁלָּשׁ
+              </span>
+              <span class="text-[11px] bg-emerald-100 text-emerald-800 font-black px-2 py-0.5 rounded-lg">דוּ-מְמַד</span>
+            </div>
+            <p class="text-xs text-slate-500 font-semibold mb-3">בָּסִיס (b), גֹּבַהּ (h) וְשָׁלוֹשׁ צְלָעוֹת.</p>
+            <div class="space-y-2 text-sm bg-emerald-50 p-3 rounded-2xl border border-emerald-100">
+              <div class="flex justify-between items-center">
+                <span class="font-black text-rose-700">📏 הֶקֵּף:</span>
+                <span class="font-mono font-black text-slate-800">חִבּוּר 3 הַצְּלָעוֹת</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="font-black text-emerald-700">🟩 שֶׁטַח:</span>
+                <span class="font-mono font-black text-slate-800">(בָּסִיס × גֹּבַהּ) ÷ 2</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-3 text-[11px] font-bold text-slate-400">💡 מַדּוּעַ חֲצִי? כִּי מְשֻׁלָּשׁ הוּא בְּדִיּוּק חֲצִי מִמַּלְבֵּן!</div>
+        </div>
+
+        <!-- Card: Circle -->
+        <div class="bg-white p-5 rounded-3xl border-3 border-pink-200 shadow-card-game flex flex-col justify-between hover:border-pink-400 transition">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-base font-black text-slate-800 flex items-center gap-2">
+                <svg class="w-6 h-6 inline-block" viewBox="0 0 40 40">
+                  <circle cx="20" cy="20" r="15" fill="#FF6492" stroke="#D83E6C" stroke-width="2"/>
+                </svg>
+                מַעְגָּל
+              </span>
+              <span class="text-[11px] bg-pink-100 text-pink-800 font-black px-2 py-0.5 rounded-lg">דוּ-מְמַד</span>
+            </div>
+            <p class="text-xs text-slate-500 font-semibold mb-3">רַדְיוּס מֵהַמֶּרְכָּז (r). פַּאי π ≈ 3.14.</p>
+            <div class="space-y-2 text-sm bg-pink-50 p-3 rounded-2xl border border-pink-100">
+              <div class="flex justify-between items-center">
+                <span class="font-black text-rose-700">📏 הֶקֵּף:</span>
+                <span class="font-mono font-black text-slate-800">2 × π × r</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="font-black text-emerald-700">🟩 שֶׁטַח:</span>
+                <span class="font-mono font-black text-slate-800">π × r²</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-3 text-[11px] font-bold text-slate-400">💡 כְּמוֹ: גַּלְגַּל אוֹפַנַּיִם, פִּיצָה עֲגֻלָּה אוֹ מַטְבֵּעַ.</div>
+        </div>
+
+        <!-- Card: Cube -->
+        <div class="bg-white p-5 rounded-3xl border-3 border-teal-200 shadow-card-game flex flex-col justify-between hover:border-teal-400 transition">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-base font-black text-slate-800 flex items-center gap-2">
+                <svg class="w-6 h-6 inline-block" viewBox="0 0 40 40">
+                  <polygon points="20,4 35,11 20,18 5,11" fill="#20D3C2"/>
+                  <polygon points="5,11 20,18 20,34 5,27" fill="#14B8A6"/>
+                  <polygon points="35,11 35,27 20,34 20,18" fill="#0D9488"/>
+                </svg>
+                קֻבִּיָּה
+              </span>
+              <span class="text-[11px] bg-teal-100 text-teal-800 font-black px-2 py-0.5 rounded-lg">תְּלַת-מְמַד (נֶפַח)</span>
+            </div>
+            <p class="text-xs text-slate-500 font-semibold mb-3">כָּל הַמְּמַדִּים שָׁווִים: a × a × a.</p>
+            <div class="space-y-2 text-sm bg-teal-50 p-3 rounded-2xl border border-teal-100">
+              <div class="flex justify-between items-center">
+                <span class="font-black text-teal-800">📦 נֶפַח (V):</span>
+                <span class="font-mono font-black text-slate-800">a³ (צֶלַע כְּפוּל צֶלַע כְּפוּל צֶלַע)</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-3 text-[11px] font-bold text-slate-400">💡 כְּמוֹ: קֻבִּיַּת מִשְׂחָק, קֻבִּיַּת קֶרַח, קֻבִּיָּה הוֹנְגָרִית.</div>
+        </div>
+
+        <!-- Card: Cuboid -->
+        <div class="bg-white p-5 rounded-3xl border-3 border-purple-200 shadow-card-game flex flex-col justify-between hover:border-purple-400 transition">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-base font-black text-slate-800 flex items-center gap-2">
+                <svg class="w-6 h-6 inline-block" viewBox="0 0 40 40">
+                  <polygon points="16,6 36,10 26,16 6,12" fill="#CE82FF"/>
+                  <polygon points="6,12 26,16 26,34 6,30" fill="#A855F7"/>
+                  <polygon points="36,10 36,28 26,34 26,16" fill="#8E35CE"/>
+                </svg>
+                תֵּבָה
+              </span>
+              <span class="text-[11px] bg-purple-100 text-purple-800 font-black px-2 py-0.5 rounded-lg">תְּלַת-מְמַד (נֶפַח)</span>
+            </div>
+            <p class="text-xs text-slate-500 font-semibold mb-3">אֹרֶךְ (L), רֹחַב (W), גֹּבַהּ (H).</p>
+            <div class="space-y-2 text-sm bg-purple-50 p-3 rounded-2xl border border-purple-100">
+              <div class="flex justify-between items-center">
+                <span class="font-black text-purple-800">📦 נֶפַח (V):</span>
+                <span class="font-mono font-black text-slate-800">L × W × H</span>
+              </div>
+            </div>
+          </div>
+          <div class="mt-3 text-[11px] font-bold text-slate-400">💡 כְּמוֹ: קַרְטוֹן קוֹרְנְפְלֶקְס, בְּרֵכַת שְׂחִיָּה אוֹ אֲרוֹן בְּגָדִים.</div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="max-w-6xl mx-auto w-full mt-6 text-center text-xs font-bold text-slate-400 pb-2">
+    נִבְנָה בְּאַהֲבָה עֲבוּר יְלָדִים סַקְרָנִים ✨ מוּכָן לְפִרְסוּם יָשִׁיר בְּ-GitHub Pages
+  </footer>
+
+  <!-- SCRIPT LOGIC -->
+  <script>
+    /* =========================================================
+       1. WEB AUDIO SYNTHESIZER (Friendly Sound Effects)
+       ========================================================= */
+    let audioCtx = null;
+    let isSoundOn = true;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (AudioContext) audioCtx = new AudioContext();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function toggleAudio() {
+      isSoundOn = !isSoundOn;
+      const icon = document.getElementById('soundIcon');
+      if (isSoundOn) {
+        icon.className = 'fa-solid fa-volume-high text-xl';
+        playSound('pop');
+        setMascot("יֵשׁ! הַצְּלִילִים פְּעִילִים עַכְשָׁו! 🎵");
+      } else {
+        icon.className = 'fa-solid fa-volume-xmark text-xl';
+        setMascot("הִשְׁתַּקְתִּי אֶת הַקּוֹל, אֲבָל אֲנִי עֲדַיִן כָּאן אִתְּכֶם! 🤫");
+      }
+    }
+
+    function playSound(type) {
+      if (!isSoundOn) return;
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+
+        if (type === 'pop') {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(450, now);
+          osc.frequency.exponentialRampToValueAtTime(800, now + 0.08);
+          gain.gain.setValueAtTime(0.2, now);
+          gain.gain.linearRampToValueAtTime(0.01, now + 0.08);
+          osc.start(now);
+          osc.stop(now + 0.08);
+        } else if (type === 'whoosh') {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(200, now);
+          osc.frequency.exponentialRampToValueAtTime(600, now + 0.2);
+          gain.gain.setValueAtTime(0.15, now);
+          gain.gain.linearRampToValueAtTime(0.01, now + 0.2);
+          osc.start(now);
+          osc.stop(now + 0.2);
+        } else if (type === 'success') {
+          const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+          notes.forEach((freq, idx) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.type = 'triangle';
+            osc.frequency.value = freq;
+            const t = now + idx * 0.09;
+            gain.gain.setValueAtTime(0.25, t);
+            gain.gain.exponentialRampToValueAtTime(0.001, t + 0.25);
+            osc.start(t);
+            osc.stop(t + 0.25);
+          });
+        } else if (type === 'wrong') {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(260, now);
+          osc.frequency.linearRampToValueAtTime(140, now + 0.25);
+          gain.gain.setValueAtTime(0.2, now);
+          gain.gain.linearRampToValueAtTime(0.01, now + 0.25);
+          osc.start(now);
+          osc.stop(now + 0.25);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    /* =========================================================
+       2. MASCOT HELPER ("צורוני")
+       ========================================================= */
+    function setMascot(message, mood = "חָכָם וְסַקְרָן 💡") {
+      const el = document.getElementById('mascotMessage');
+      const badge = document.getElementById('mascotMoodBadge');
+      if (el) el.textContent = message;
+      if (badge) badge.textContent = mood;
+    }
+
+    /* =========================================================
+       3. CONFETTI SYSTEM
+       ========================================================= */
+    const confettiCanvas = document.getElementById('confettiCanvas');
+    const cCtx = confettiCanvas.getContext('2d');
+    let confettiParticles = [];
+
+    function resizeCanvas() {
+      confettiCanvas.width = window.innerWidth;
+      confettiCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function triggerConfetti() {
+      const colors = ['#FFC837', '#FF4B4B', '#20D3C2', '#CE82FF', '#58CC02', '#FF6492'];
+      for (let i = 0; i < 80; i++) {
+        confettiParticles.push({
+          x: window.innerWidth / 2,
+          y: window.innerHeight / 2,
+          vx: (Math.random() - 0.5) * 18,
+          vy: (Math.random() - 0.95) * 20,
+          size: Math.random() * 9 + 4,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rotation: Math.random() * 360,
+          vRot: (Math.random() - 0.5) * 12,
+          opacity: 1
+        });
+      }
+    }
+
+    function updateConfetti() {
+      cCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+      for (let i = confettiParticles.length - 1; i >= 0; i--) {
+        const p = confettiParticles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.45; // gravity
+        p.rotation += p.vRot;
+        p.opacity -= 0.015;
+
+        cCtx.save();
+        cCtx.translate(p.x, p.y);
+        cCtx.rotate((p.rotation * Math.PI) / 180);
+        cCtx.fillStyle = p.color;
+        cCtx.globalAlpha = Math.max(0, p.opacity);
+        cCtx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+        cCtx.restore();
+
+        if (p.opacity <= 0 || p.y > window.innerHeight) {
+          confettiParticles.splice(i, 1);
+        }
+      }
+      requestAnimationFrame(updateConfetti);
+    }
+    requestAnimationFrame(updateConfetti);
+
+    /* =========================================================
+       4. NAVIGATION TABS
+       ========================================================= */
+    function switchTab(tabId) {
+      playSound('pop');
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.getElementById(tabId).classList.remove('hidden');
+
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.remove('bg-kid-coral', 'text-white', 'shadow-btn-coral', 'border-red-400');
+        btn.classList.add('bg-white', 'text-slate-700', 'shadow-btn-white', 'border-slate-200');
+      });
+
+      const activeNav = document.getElementById('nav-' + tabId);
+      activeNav.classList.remove('bg-white', 'text-slate-700', 'shadow-btn-white', 'border-slate-200');
+      activeNav.classList.add('bg-kid-coral', 'text-white', 'shadow-btn-coral', 'border-red-400');
+
+      if (tabId === 'tab2D') {
+        setMascot("חֲקִירַת דּוּ-מְמַד: שַׁנּוּ אֶת מִדּוֹת הַצְּלָעוֹת וְהַפְעִילוּ אֶת נְמָלַת הַהֶקֵּף!", "סַקְרָנִים 🔍");
+      } else if (tabId === 'tab3D') {
+        setMascot("בְּרוּכִים הַבָּאִים לְעוֹלַם הַתְּלַת-מְמַד! גַּלּוּ כַּמָּה נֶפַח יֵשׁ בְּתוֹךְ קֻבִּיּוֹת וְגָדָרִים!", "תְּלַת-מְמַד 🧊");
+      } else if (tabId === 'tabGame') {
+        setMascot("זְמַן מִשְׂחָק! בּוֹאוּ נִרְאֶה כַּמָּה נְקֻדּוֹת תַּצְלִיחוּ לִצְבֹּר בְּאֶתְגַּר הַשְּׁאֵלוֹת!", "אַלּוּפִים 🏆");
+        initGameIfEmpty();
+      } else if (tabId === 'tabFormula') {
+        setMascot("לוּחַ הַנּוּסְחָאוֹת הַמַּדְלִיק שֶׁלָּנוּ! אֶפְשָׁר לְהָצִיץ פֹּה בְּכָל רֶגַע!", "חֲכָמִים 📜");
+      }
+    }
+
+    /* =========================================================
+       5. 2D SHAPES ENGINE & ANIMATIONS
+       ========================================================= */
+    let current2DShape = 'square';
+    let isAntRunning = false;
+    let isAreaHighlighted = false;
+    let antAnimInterval = null;
+
+    const shapesMeta2D = {
+      square: {
+        title: 'רִבּוּעַ חָמוּד',
+        icon: '🟧',
+        insight: 'בְּרִבּוּעַ כָּל 4 הַצְּלָעוֹת שָׁווֹת לְגַמְרֵי! כְּדֵי לִמְצֹא הֶקֵּף פָּשׁוּט כּוֹפְלִים בְּ-4.',
+        sliders: [{ id: 'side', name: 'אֹרֶךְ הַצֶּלַע (a)', min: 2, max: 10, val: 5, unit: 'ס״מ' }]
+      },
+      rectangle: {
+        title: 'מַלְבֵּן יָדִידוּתִי',
+        icon: '🟦',
+        insight: 'בְּמַלְבֵּן יֵשׁ אֹרֶךְ וְרֹחַב. שֶׁטַח הוּא כְּפוּלָה שֶׁל שְׁנֵיהֶם, וְהֶקֵּף הוּא סַךְ כָּל 4 הַצְּלָעוֹת.',
+        sliders: [
+          { id: 'width', name: 'אֹרֶךְ (a)', min: 3, max: 12, val: 8, unit: 'ס״מ' },
+          { id: 'height', name: 'רֹחַב (b)', min: 2, max: 8, val: 4, unit: 'ס״מ' }
+        ]
+      },
+      triangle: {
+        title: 'מְשֻׁלָּשׁ קוֹפְצָנִי',
+        icon: '🔺',
+        insight: 'שֶׁטַח מְשֻׁלָּשׁ הוּא (בָּסִיס × גֹּבַהּ) לְחַלֵּק בְּ-2, כִּי הוּא תָּמִיד מְהַוֶּה חֲצִי מִמַּלְבֵּן!',
+        sliders: [
+          { id: 'base', name: 'בָּסִיס (b)', min: 3, max: 10, val: 6, unit: 'ס״מ' },
+          { id: 'height', name: 'גֹּבַהּ (h)', min: 3, max: 8, val: 5, unit: 'ס״מ' }
+        ]
+      },
+      circle: {
+        title: 'מַעְגָּל עֲגַלְגַּל',
+        icon: '🟣',
+        insight: 'הַמַּעְגָּל מִשְׁתַּמֵּשׁ בַּמִּסְפָּר הַקָּסוּם פַּאי (π ≈ 3.14). הָרַדְיוּס הוּא הַמֶּרְחָק מֵהַמֶּרְכָּז לַקָּצֶה!',
+        sliders: [{ id: 'radius', name: 'רַדְיוּס (r)', min: 2, max: 6, val: 4, unit: 'ס״מ' }]
+      },
+      trapezoid: {
+        title: 'טְרַפֵּז שָׁוֵה-שׁוֹקַיִם',
+        icon: '🟪',
+        insight: 'בְּטְרַפֵּז מְחַבְּרִים אֶת הַבָּסִיס הָעֶלְיוֹן וְהַתַּחְתּוֹן, כּוֹפְלִים בַּגֹּבַהּ וּמְחַלְּקִים בִּשְׁנַיִם!',
+        sliders: [
+          { id: 'baseTop', name: 'בָּסִיס עֶלְיוֹן (a)', min: 3, max: 8, val: 4, unit: 'ס״מ' },
+          { id: 'baseBottom', name: 'בָּסִיס תַּחְתּוֹן (b)', min: 5, max: 12, val: 8, unit: 'ס״מ' },
+          { id: 'height', name: 'גֹּבַהּ (h)', min: 2, max: 6, val: 4, unit: 'ס״מ' }
+        ]
+      }
+    };
+
+    let values2D = { side: 5, width: 8, height: 4, base: 6, radius: 4, baseTop: 4, baseBottom: 8 };
+
+    function selectShape2D(shapeKey) {
+      playSound('pop');
+      current2DShape = shapeKey;
+
+      document.querySelectorAll('.shape-2d-btn').forEach(btn => {
+        btn.classList.remove('bg-rose-50', 'border-kid-coral', 'shadow-btn-coral');
+        btn.classList.add('bg-white', 'border-slate-200', 'shadow-btn-white');
+      });
+
+      const activeBtn = document.getElementById('btn-' + shapeKey);
+      activeBtn.classList.add('bg-rose-50', 'border-kid-coral', 'shadow-btn-coral');
+      activeBtn.classList.remove('bg-white', 'border-slate-200', 'shadow-btn-white');
+
+      const meta = shapesMeta2D[shapeKey];
+      document.getElementById('canvasShapeTitle').textContent = meta.title;
+      document.getElementById('canvasShapeIcon').textContent = meta.icon;
+      document.getElementById('shapeInsight').textContent = meta.insight;
+
+      setMascot(`בְּחַרְתֶּם ${meta.title}! שַׁנּוּ מִדּוֹת וְהַבִּיטוּ בַּנְּתָנִים!`, "מְרֻתָּקִים 🤓");
+
+      buildSliders2D();
+      render2D();
+      if (isAntRunning) runAntAnimation();
+    }
+
+    function buildSliders2D() {
+      const container = document.getElementById('sliders2DContainer');
+      container.innerHTML = '';
+      const meta = shapesMeta2D[current2DShape];
+
+      meta.sliders.forEach(s => {
+        const wrap = document.createElement('div');
+        wrap.className = 'flex flex-col gap-1.5';
+        wrap.innerHTML = `
+          <div class="flex justify-between items-center text-sm font-black text-slate-700">
+            <span>${s.name}</span>
+            <span id="label2D_${s.id}" class="text-kid-blueDark font-mono bg-blue-50 border border-blue-200 px-2.5 py-0.5 rounded-xl font-bold">${values2D[s.id] || s.val} ${s.unit}</span>
+          </div>
+          <input type="range" min="${s.min}" max="${s.max}" value="${values2D[s.id] || s.val}" id="input2D_${s.id}" class="w-full">
+        `;
+        container.appendChild(wrap);
+
+        const slider = wrap.querySelector('input');
+        slider.addEventListener('input', (e) => {
+          values2D[s.id] = parseFloat(e.target.value);
+          document.getElementById(`label2D_${s.id}`).textContent = `${e.target.value} ${s.unit}`;
+          render2D();
+          if (isAntRunning) runAntAnimation();
+        });
+      });
+    }
+
+    function togglePerimeterRun() {
+      isAntRunning = !isAntRunning;
+      const btn = document.getElementById('togglePerimeterBtn');
+      const antSpeech = document.getElementById('antSpeech');
+
+      if (isAntRunning) {
+        playSound('whoosh');
+        btn.classList.add('ring-4', 'ring-red-300');
+        antSpeech.classList.remove('opacity-0');
+        setMascot("נְמָלַת הַהֶקֵּף יוֹצֵאת לְסִבּוּב מִסָּבִיב לַצּוּרָה! 🐜", "רָצִים מִסָּבִיב 🏃");
+        runAntAnimation();
+      } else {
+        playSound('pop');
+        btn.classList.remove('ring-4', 'ring-red-300');
+        antSpeech.classList.add('opacity-0');
+        stopAntAnimation();
+      }
+      render2D();
+    }
+
+    function toggleAreaHighlight() {
+      isAreaHighlighted = !isAreaHighlighted;
+      playSound('pop');
+      const btn = document.getElementById('toggleAreaBtn');
+      if (isAreaHighlighted) {
+        btn.classList.add('ring-4', 'ring-green-300');
+        setMascot("רְאוּ אֶת הַבַּלָּטוֹת! הַשֶּׁטַח הוּא כַּמּוּת הַמִּשְׁבָּצוֹת שֶׁמְּמַלְּאוֹת אֶת הַפְּנִים!", "מְמַלְּאִים בַּלָּטוֹת 🟩");
+      } else {
+        btn.classList.remove('ring-4', 'ring-green-300');
+      }
+      render2D();
+    }
+
+    function render2D() {
+      const shapeGroup = document.getElementById('shapeGroup2D');
+      const measureGroup = document.getElementById('measureGroup2D');
+      shapeGroup.innerHTML = '';
+      measureGroup.innerHTML = '';
+
+      let perimeter = 0;
+      let area = 0;
+      let pFormula = '';
+      let aFormula = '';
+
+      const scale = 22;
+      const cx = 150;
+      const cy = 100;
+
+      const fillColor = isAreaHighlighted ? 'url(#gridTiles)' : '#FFC837';
+      const strokeClass = isAntRunning ? 'ant-track' : '';
+      const baseStroke = '#3C3C3C';
+      const baseStrokeWidth = '3.5';
+
+      let trackPathD = '';
+
+      if (current2DShape === 'square') {
+        const a = values2D.side || 5;
+        const size = a * scale;
+        const x = cx - size / 2;
+        const y = cy - size / 2;
+
+        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('id', 'mainShapeTrack');
+        rect.setAttribute('x', x);
+        rect.setAttribute('y', y);
+        rect.setAttribute('width', size);
+        rect.setAttribute('height', size);
+        rect.setAttribute('rx', '10');
+        rect.setAttribute('fill', fillColor);
+        rect.setAttribute('stroke', isAntRunning ? '#FF4B4B' : baseStroke);
+        rect.setAttribute('stroke-width', baseStrokeWidth);
+        if (isAntRunning) rect.setAttribute('class', 'ant-track');
+        shapeGroup.appendChild(rect);
+
+        // Friendly eyes on square
+        addCuteFace(shapeGroup, cx, cy, 14);
+
+        // Measures
+        addMeasureLabel(measureGroup, `${a} ס״מ`, cx, y - 12, 'middle');
+        addMeasureLabel(measureGroup, `${a} ס״מ`, x - 12, cy, 'end');
+
+        perimeter = 4 * a;
+        area = a * a;
+        pFormula = `P = 4 × ${a} = ${perimeter} ס״מ`;
+        aFormula = `S = ${a} × ${a} = ${area} סמ״ר`;
+
+      } else if (current2DShape === 'rectangle') {
+        const wVal = values2D.width || 8;
+        const hVal = values2D.height || 4;
+        const w = wVal * scale;
+        const h = hVal * scale;
+        const x = cx - w / 2;
+        const y = cy - h / 2;
+
+        const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        rect.setAttribute('id', 'mainShapeTrack');
+        rect.setAttribute('x', x);
+        rect.setAttribute('y', y);
+        rect.setAttribute('width', w);
+        rect.setAttribute('height', h);
+        rect.setAttribute('rx', '10');
+        rect.setAttribute('fill', isAreaHighlighted ? 'url(#gridTiles)' : '#1CB0F6');
+        rect.setAttribute('stroke', isAntRunning ? '#FF4B4B' : baseStroke);
+        rect.setAttribute('stroke-width', baseStrokeWidth);
+        if (isAntRunning) rect.setAttribute('class', 'ant-track');
+        shapeGroup.appendChild(rect);
+
+        addCuteFace(shapeGroup, cx, cy, 16);
+
+        addMeasureLabel(measureGroup, `אֹרֶךְ: ${wVal} ס״מ`, cx, y - 12, 'middle');
+        addMeasureLabel(measureGroup, `רֹחַב: ${hVal} ס״מ`, x - 12, cy, 'end');
+
+        perimeter = 2 * (wVal + hVal);
+        area = wVal * hVal;
+        pFormula = `P = 2 × (${wVal} + ${hVal}) = ${perimeter} ס״מ`;
+        aFormula = `S = ${wVal} × ${hVal} = ${area} סמ״ר`;
+
+      } else if (current2DShape === 'triangle') {
+        const b = values2D.base || 6;
+        const h = values2D.height || 5;
+        const w = b * scale;
+        const ht = h * scale;
+
+        const x1 = cx - w / 2;
+        const y1 = cy + ht / 2;
+        const x2 = x1 + w;
+        const y2 = y1;
+        const x3 = x1;
+        const y3 = y1 - ht;
+
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+        path.setAttribute('id', 'mainShapeTrack');
+        path.setAttribute('points', `${x1},${y1} ${x2},${y2} ${x3},${y3}`);
+        path.setAttribute('fill', isAreaHighlighted ? 'url(#gridTiles)' : '#58CC02');
+        path.setAttribute('stroke', isAntRunning ? '#FF4B4B' : baseStroke);
+        path.setAttribute('stroke-width', baseStrokeWidth);
+        path.setAttribute('stroke-linejoin', 'round');
+        if (isAntRunning) path.setAttribute('class', 'ant-track');
+        shapeGroup.appendChild(path);
+
+        // Right angle marker
+        const marker = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+        marker.setAttribute('points', `${x1},${y1-14} ${x1+14},${y1-14} ${x1+14},${y1}`);
+        marker.setAttribute('fill', 'none');
+        marker.setAttribute('stroke', '#3C3C3C');
+        marker.setAttribute('stroke-width', '2');
+        shapeGroup.appendChild(marker);
+
+        addCuteFace(shapeGroup, x1 + w / 3, y1 - ht / 3, 12);
+
+        const hypotenuse = Math.sqrt(b * b + h * h);
+        perimeter = Math.round((b + h + hypotenuse) * 10) / 10;
+        area = Math.round(((b * h) / 2) * 10) / 10;
+
+        addMeasureLabel(measureGroup, `בָּסִיס: ${b} ס״מ`, cx, y1 + 18, 'middle');
+        addMeasureLabel(measureGroup, `גֹּבַהּ: ${h} ס״מ`, x1 - 12, cy, 'end');
+        addMeasureLabel(measureGroup, `יֶתֶר ≈ ${hypotenuse.toFixed(1)}`, cx + 25, cy - 10, 'start', '#64748B');
+
+        pFormula = `P = ${b} + ${h} + ${hypotenuse.toFixed(1)} = ${perimeter} ס״מ`;
+        aFormula = `S = (${b} × ${h}) ÷ 2 = ${area} סמ״ר`;
+
+      } else if (current2DShape === 'circle') {
+        const r = values2D.radius || 4;
+        const radiusPx = r * scale * 0.95;
+
+        const circ = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        circ.setAttribute('id', 'mainShapeTrack');
+        circ.setAttribute('cx', cx);
+        circ.setAttribute('cy', cy);
+        circ.setAttribute('r', radiusPx);
+        circ.setAttribute('fill', isAreaHighlighted ? 'url(#gridTiles)' : '#FF6492');
+        circ.setAttribute('stroke', isAntRunning ? '#FF4B4B' : baseStroke);
+        circ.setAttribute('stroke-width', baseStrokeWidth);
+        if (isAntRunning) circ.setAttribute('class', 'ant-track');
+        shapeGroup.appendChild(circ);
+
+        addCuteFace(shapeGroup, cx, cy, 14);
+
+        // Radius dashed line
+        const rLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        rLine.setAttribute('x1', cx);
+        rLine.setAttribute('y1', cy);
+        rLine.setAttribute('x2', cx + radiusPx);
+        rLine.setAttribute('y2', cy);
+        rLine.setAttribute('stroke', '#FFF');
+        rLine.setAttribute('stroke-width', '3');
+        rLine.setAttribute('stroke-dasharray', '4,3');
+        shapeGroup.appendChild(rLine);
+
+        addMeasureLabel(measureGroup, `r = ${r} ס״מ`, cx + radiusPx / 2, cy - 8, 'middle', '#3C3C3C');
+
+        perimeter = Math.round(2 * Math.PI * r * 10) / 10;
+        area = Math.round(Math.PI * r * r * 10) / 10;
+        pFormula = `P = 2 × π × ${r} ≈ ${perimeter} ס״מ`;
+        aFormula = `S = π × ${r}² ≈ ${area} סמ״ר`;
+
+      } else if (current2DShape === 'trapezoid') {
+        const aVal = values2D.baseTop || 4;
+        const bVal = values2D.baseBottom || 8;
+        const hVal = values2D.height || 4;
+
+        const aPx = aVal * scale;
+        const bPx = bVal * scale;
+        const hPx = hVal * scale;
+
+        const yTop = cy - hPx / 2;
+        const yBottom = cy + hPx / 2;
+        const x1 = cx - aPx / 2;
+        const x2 = cx + aPx / 2;
+        const x3 = cx + bPx / 2;
+        const x4 = cx - bPx / 2;
+
+        const trap = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+        trap.setAttribute('id', 'mainShapeTrack');
+        trap.setAttribute('points', `${x1},${yTop} ${x2},${yTop} ${x3},${yBottom} ${x4},${yBottom}`);
+        trap.setAttribute('fill', isAreaHighlighted ? 'url(#gridTiles)' : '#CE82FF');
+        trap.setAttribute('stroke', isAntRunning ? '#FF4B4B' : baseStroke);
+        trap.setAttribute('stroke-width', baseStrokeWidth);
+        trap.setAttribute('stroke-linejoin', 'round');
+        if (isAntRunning) trap.setAttribute('class', 'ant-track');
+        shapeGroup.appendChild(trap);
+
+        addCuteFace(shapeGroup, cx, cy, 14);
+
+        const dx = (bVal - aVal) / 2;
+        const leg = Math.sqrt(dx * dx + hVal * hVal);
+        perimeter = Math.round((aVal + bVal + 2 * leg) * 10) / 10;
+        area = Math.round((((aVal + bVal) * hVal) / 2) * 10) / 10;
+
+        addMeasureLabel(measureGroup, `בָּסִיס עֶלְיוֹן: ${aVal} ס״מ`, cx, yTop - 10, 'middle');
+        addMeasureLabel(measureGroup, `בָּסִיס תַּחְתּוֹן: ${bVal} ס״מ`, cx, yBottom + 18, 'middle');
+        addMeasureLabel(measureGroup, `גֹּבַהּ h = ${hVal}`, cx, cy + 18, 'middle', '#3C3C3C');
+
+        pFormula = `P = ${aVal} + ${bVal} + 2×${leg.toFixed(1)} = ${perimeter} ס״מ`;
+        aFormula = `S = (${aVal} + ${bVal}) × ${hVal} ÷ 2 = ${area} סמ״ר`;
+      }
+
+      document.getElementById('perimeterFormulaText').textContent = pFormula;
+      document.getElementById('perimeterResult').textContent = `${perimeter} ס״מ`;
+      document.getElementById('areaFormulaText').textContent = aFormula;
+      document.getElementById('areaResult').textContent = `${area} סמ״ר`;
+    }
+
+    function addMeasureLabel(group, text, x, y, anchor = 'middle', color = '#1E293B') {
+      const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      t.setAttribute('x', x);
+      t.setAttribute('y', y);
+      t.setAttribute('text-anchor', anchor);
+      t.setAttribute('fill', color);
+      t.setAttribute('font-size', '13');
+      t.setAttribute('font-weight', '900');
+      t.textContent = text;
+      group.appendChild(t);
+    }
+
+    function addCuteFace(group, x, y, spacing = 12) {
+      // Eyes
+      const e1 = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      e1.setAttribute('cx', x - spacing);
+      e1.setAttribute('cy', y - 4);
+      e1.setAttribute('r', '3.5');
+      e1.setAttribute('fill', '#1E2055');
+      group.appendChild(e1);
+
+      const e2 = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      e2.setAttribute('cx', x + spacing);
+      e2.setAttribute('cy', y - 4);
+      e2.setAttribute('r', '3.5');
+      e2.setAttribute('fill', '#1E2055');
+      group.appendChild(e2);
+
+      // Smile
+      const mouth = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+      mouth.setAttribute('d', `M ${x - spacing/1.5} ${y + 4} Q ${x} ${y + 11} ${x + spacing/1.5} ${y + 4}`);
+      mouth.setAttribute('stroke', '#1E2055');
+      mouth.setAttribute('stroke-width', '2.5');
+      mouth.setAttribute('fill', 'none');
+      mouth.setAttribute('stroke-linecap', 'round');
+      group.appendChild(mouth);
+    }
+
+    /* Ant Walk on Path Logic */
+    let antPos = 0;
+    function runAntAnimation() {
+      stopAntAnimation();
+      const ant = document.getElementById('runnerAnt');
+      const track = document.getElementById('mainShapeTrack');
+      if (!ant || !track) return;
+      ant.style.display = 'block';
+
+      antAnimInterval = setInterval(() => {
+        try {
+          const totalLen = track.getTotalLength ? track.getTotalLength() : 400;
+          antPos = (antPos + 4) % totalLen;
+          const pt = track.getPointAtLength(antPos);
+          ant.setAttribute('transform', `translate(${pt.x}, ${pt.y})`);
+        } catch (e) {
+          // Fallback if shape element lacks standard totalLength
+        }
+      }, 35);
+    }
+
+    function stopAntAnimation() {
+      if (antAnimInterval) {
+        clearInterval(antAnimInterval);
+        antAnimInterval = null;
+      }
+      const ant = document.getElementById('runnerAnt');
+      if (ant) ant.style.display = 'none';
+    }
+
+
+    /* =========================================================
+       6. 3D SHAPES ENGINE & SUGAR CUBES
+       ========================================================= */
+    let current3DShape = 'cube';
+    let isCubeGridOn = false;
+
+    const shapesMeta3D = {
+      cube: {
+        title: 'קֻבִּיָּה חֲמוּדָה',
+        sliders: [{ id: 'side', name: 'אֹרֶךְ הַצֶּלַע (a)', min: 2, max: 7, val: 4, unit: 'ס״מ' }]
+      },
+      cuboid: {
+        title: 'תֵּבַת צַעֲצוּעִים',
+        sliders: [
+          { id: 'length', name: 'אֹרֶךְ (L)', min: 3, max: 8, val: 6, unit: 'ס״מ' },
+          { id: 'width', name: 'רֹחַב (W)', min: 2, max: 6, val: 4, unit: 'ס״מ' },
+          { id: 'height', name: 'גֹּבַהּ (H)', min: 2, max: 7, val: 5, unit: 'ס״מ' }
+        ]
+      },
+      cylinder: {
+        title: 'גָּלִיל עֲנָק',
+        sliders: [
+          { id: 'radius', name: 'רַדְיוּס בָּסִיס (r)', min: 2, max: 6, val: 3, unit: 'ס״מ' },
+          { id: 'height', name: 'גֹּבַהּ (h)', min: 3, max: 8, val: 6, unit: 'ס״מ' }
+        ]
+      },
+      pyramid: {
+        title: 'פִּירָמִידָה קְסוּמָה',
+        sliders: [
+          { id: 'baseSide', name: 'צֶלַע בָּסִיס (a)', min: 3, max: 8, val: 5, unit: 'ס״מ' },
+          { id: 'height', name: 'גֹּבַהּ (h)', min: 3, max: 8, val: 6, unit: 'ס״מ' }
+        ]
+      }
+    };
+
+    let values3D = { side: 4, length: 6, width: 4, height: 5, radius: 3, baseSide: 5 };
+
+    function selectShape3D(shapeKey) {
+      playSound('pop');
+      current3DShape = shapeKey;
+
+      document.querySelectorAll('.shape-3d-btn').forEach(btn => {
+        btn.classList.remove('bg-teal-50', 'border-teal-500', 'shadow-btn-green');
+        btn.classList.add('bg-white', 'border-slate-200', 'shadow-btn-white');
+      });
+
+      const activeBtn = document.getElementById('btn3d-' + shapeKey);
+      activeBtn.classList.add('bg-teal-50', 'border-teal-500', 'shadow-btn-green');
+      activeBtn.classList.remove('bg-white', 'border-slate-200', 'shadow-btn-white');
+
+      const meta = shapesMeta3D[shapeKey];
+      document.getElementById('shape3DTitle').textContent = meta.title;
+      setMascot(`גּוּף ${meta.title}! רְאוּ אֵיךְ שֶׁטַח הָרִצְפָּה מֻכְפָּל בַּגֹּבַהּ כְּדֵי לִמְצֹא אֶת הַנֶּפַח!`, "תְּלַת-מְמַד 📦");
+
+      buildSliders3D();
+      render3D();
+    }
+
+    function toggleCubeGrid() {
+      playSound('pop');
+      isCubeGridOn = !isCubeGridOn;
+      const text = document.getElementById('cubeToggleText');
+      if (isCubeGridOn) {
+        text.textContent = 'הַסְתֵּר קֻבְיוֹת סֻכָּר';
+        setMascot("וָאוּ! הִנֵּה כָּל קֻבְיוֹת הַסֻּכָּר שֶׁנִּכְנָסוֹת בִּפְנִים!", "מְמַלְּאִים סֻכָּר 🍬");
+      } else {
+        text.textContent = 'מַלֵּא בְּקֻבְיוֹת סֻכָּר (הַמְחָשָׁה)';
+      }
+      render3D();
+    }
+
+    function buildSliders3D() {
+      const container = document.getElementById('sliders3DContainer');
+      container.innerHTML = '';
+      const meta = shapesMeta3D[current3DShape];
+
+      meta.sliders.forEach(s => {
+        const wrap = document.createElement('div');
+        wrap.className = 'flex flex-col gap-1.5';
+        wrap.innerHTML = `
+          <div class="flex justify-between items-center text-sm font-black text-slate-700">
+            <span>${s.name}</span>
+            <span id="label3D_${s.id}" class="text-teal-700 font-mono bg-teal-50 border border-teal-200 px-2.5 py-0.5 rounded-xl font-bold">${values3D[s.id] || s.val} ${s.unit}</span>
+          </div>
+          <input type="range" min="${s.min}" max="${s.max}" value="${values3D[s.id] || s.val}" id="input3D_${s.id}" class="w-full">
+        `;
+        container.appendChild(wrap);
+
+        const slider = wrap.querySelector('input');
+        slider.addEventListener('input', (e) => {
+          values3D[s.id] = parseFloat(e.target.value);
+          document.getElementById(`label3D_${s.id}`).textContent = `${e.target.value} ${s.unit}`;
+          render3D();
+        });
+      });
+    }
+
+    function render3D() {
+      const g = document.getElementById('group3D');
+      g.innerHTML = '';
+
+      let baseArea = 0;
+      let height = 0;
+      let volume = 0;
+      let formulaStr = '';
+
+      const cos30 = 0.866;
+      const sin30 = 0.5;
+      const scale = 14;
+
+      function isoProj(x, y, z) {
+        return {
+          px: (x - y) * cos30,
+          py: (x + y) * sin30 - z
+        };
+      }
+
+      if (current3DShape === 'cube' || current3DShape === 'cuboid') {
+        const numL = current3DShape === 'cube' ? values3D.side : values3D.length;
+        const numW = current3DShape === 'cube' ? values3D.side : values3D.width;
+        const numH = current3DShape === 'cube' ? values3D.side : values3D.height;
+
+        const L = numL * scale;
+        const W = numW * scale;
+        const H = numH * scale;
+
+        baseArea = numL * numW;
+        height = numH;
+        volume = baseArea * height;
+        formulaStr = `V = ${numL} × ${numW} × ${numH} = ${volume} סמ״ק`;
+
+        // 8 Iso Vertices
+        const v = [
+          isoProj(0, 0, 0),
+          isoProj(L, 0, 0),
+          isoProj(L, W, 0),
+          isoProj(0, W, 0),
+          isoProj(0, 0, H),
+          isoProj(L, 0, H),
+          isoProj(L, W, H),
+          isoProj(0, W, H),
+        ];
+
+        // Faces
+        drawPolygon3D(g, [v[4], v[5], v[6], v[7]], 'url(#gTop)', '#5EEAD4', 2.5);
+        drawPolygon3D(g, [v[0], v[3], v[7], v[4]], 'url(#gLeft)', '#0F766E', 2.5);
+        drawPolygon3D(g, [v[3], v[2], v[6], v[7]], 'url(#gRight)', '#115E59', 2.5);
+
+        // Sugar Cube Sub-lines
+        if (isCubeGridOn) {
+          for (let z = 1; z < numH; z++) {
+            const p1 = isoProj(0, 0, z * scale);
+            const p2 = isoProj(0, W, z * scale);
+            const p3 = isoProj(L, W, z * scale);
+            drawLine3D(g, p1, p2, '#FFF', 1.5, '3,2');
+            drawLine3D(g, p2, p3, '#FFF', 1.5, '3,2');
+          }
+          for (let x = 1; x < numL; x++) {
+            const p1 = isoProj(x * scale, 0, H);
+            const p2 = isoProj(x * scale, W, H);
+            const p3 = isoProj(x * scale, W, 0);
+            drawLine3D(g, p1, p2, '#FFF', 1.5, '3,2');
+            drawLine3D(g, p2, p3, '#FFF', 1.5, '3,2');
+          }
+        }
+
+        // Dimension labels
+        addText3D(g, `L = ${numL}`, v[1].px + 8, v[1].py + 8, '#FDE047');
+        addText3D(g, `W = ${numW}`, v[3].px - 22, v[3].py + 15, '#FDE047');
+        addText3D(g, `H = ${numH}`, v[7].px - 28, (v[7].py + v[3].py) / 2, '#5EEAD4');
+
+      } else if (current3DShape === 'cylinder') {
+        const r = values3D.radius;
+        const h = values3D.height;
+        const rx = r * scale * 1.5;
+        const ry = rx * 0.45;
+        const hPx = h * scale * 1.3;
+
+        baseArea = Math.round(Math.PI * r * r * 10) / 10;
+        height = h;
+        volume = Math.round(baseArea * height * 10) / 10;
+        formulaStr = `V = π × ${r}² × ${h} ≈ ${volume} סמ״ק`;
+
+        const yTop = -hPx / 2;
+        const yBottom = hPx / 2;
+
+        const body = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        body.setAttribute('d', `M ${-rx} ${yTop} L ${-rx} ${yBottom} A ${rx} ${ry} 0 0 0 ${rx} ${yBottom} L ${rx} ${yTop} Z`);
+        body.setAttribute('fill', 'url(#cylGrad)');
+        body.setAttribute('stroke', '#0F766E');
+        body.setAttribute('stroke-width', '2.5');
+        g.appendChild(body);
+
+        // Dashed back ellipse
+        const bottomDashed = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
+        bottomDashed.setAttribute('cx', 0);
+        bottomDashed.setAttribute('cy', yBottom);
+        bottomDashed.setAttribute('rx', rx);
+        bottomDashed.setAttribute('ry', ry);
+        bottomDashed.setAttribute('fill', 'none');
+        bottomDashed.setAttribute('stroke', '#5EEAD4');
+        bottomDashed.setAttribute('stroke-width', '2');
+        bottomDashed.setAttribute('stroke-dasharray', '4,3');
+        g.appendChild(bottomDashed);
+
+        // Top Lid
+        const topEllipse = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
+        topEllipse.setAttribute('cx', 0);
+        topEllipse.setAttribute('cy', yTop);
+        topEllipse.setAttribute('rx', rx);
+        topEllipse.setAttribute('ry', ry);
+        topEllipse.setAttribute('fill', '#5EEAD4');
+        topEllipse.setAttribute('stroke', '#14B8A6');
+        topEllipse.setAttribute('stroke-width', '2.5');
+        g.appendChild(topEllipse);
+
+        drawLine3D(g, { px: 0, py: yTop }, { px: rx, py: yTop }, '#FFF', 2.5);
+        addText3D(g, `r = ${r}`, rx / 2, yTop - 8, '#FFF');
+        addText3D(g, `h = ${h}`, rx + 16, 0, '#FDE047');
+
+      } else if (current3DShape === 'pyramid') {
+        const a = values3D.baseSide;
+        const h = values3D.height;
+        const aPx = a * scale * 1.2;
+        const hPx = h * scale * 1.4;
+
+        baseArea = a * a;
+        height = h;
+        volume = Math.round(((baseArea * height) / 3) * 10) / 10;
+        formulaStr = `V = (${a}² × ${h}) ÷ 3 ≈ ${volume} סמ״ק`;
+
+        const b1 = isoProj(-aPx/2, -aPx/2, 0);
+        const b2 = isoProj(aPx/2, -aPx/2, 0);
+        const b3 = isoProj(aPx/2, aPx/2, 0);
+        const b4 = isoProj(-aPx/2, aPx/2, 0);
+        const apex = { px: 0, py: -hPx };
+
+        drawLine3D(g, b1, b2, '#475569', 1.5, '3,3');
+        drawLine3D(g, b2, b3, '#475569', 1.5, '3,3');
+
+        drawPolygon3D(g, [b4, b1, apex], 'url(#gLeft)', '#0F766E', 2.5);
+        drawPolygon3D(g, [b3, b4, apex], 'url(#gRight)', '#115E59', 2.5);
+
+        drawLine3D(g, { px: 0, py: 0 }, apex, '#FDE047', 2, '4,4');
+        addText3D(g, `גֹּבַהּ = ${h}`, 12, -hPx / 2, '#FDE047');
+        addText3D(g, `בָּסִיס = ${a}`, b3.px - 14, b3.py + 16, '#5EEAD4');
+      }
+
+      document.getElementById('baseAreaText').textContent = `${baseArea} סמ״ר`;
+      document.getElementById('height3dText').textContent = `${height} ס״מ`;
+      document.getElementById('volumeFormulaDisplay').textContent = formulaStr;
+      document.getElementById('volumeTotalResult').textContent = `${volume} סמ״ק`;
+    }
+
+    function drawPolygon3D(group, points, fill, stroke, strokeWidth) {
+      const p = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+      const pts = points.map(pt => `${pt.px},${pt.py}`).join(' ');
+      p.setAttribute('points', pts);
+      p.setAttribute('fill', fill);
+      p.setAttribute('stroke', stroke);
+      p.setAttribute('stroke-width', strokeWidth);
+      group.appendChild(p);
+    }
+
+    function drawLine3D(group, p1, p2, stroke, width = 1, dash = '') {
+      const l = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      l.setAttribute('x1', p1.px);
+      l.setAttribute('y1', p1.py);
+      l.setAttribute('x2', p2.px);
+      l.setAttribute('y2', p2.py);
+      l.setAttribute('stroke', stroke);
+      l.setAttribute('stroke-width', width);
+      if (dash) l.setAttribute('stroke-dasharray', dash);
+      group.appendChild(l);
+    }
+
+    function addText3D(group, text, x, y, color = '#FFF') {
+      const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      t.setAttribute('x', x);
+      t.setAttribute('y', y);
+      t.setAttribute('fill', color);
+      t.setAttribute('font-size', '13');
+      t.setAttribute('font-weight', '900');
+      t.setAttribute('text-anchor', 'middle');
+      t.textContent = text;
+      group.appendChild(t);
+    }
+
+
+    /* =========================================================
+       7. CHALLENGE GAME ENGINE (Quiz System)
+       ========================================================= */
+    let currentQIdx = 0;
+    let quizScore = 0;
+    let streakCount = 0;
+    let bestScore = parseInt(localStorage.getItem('shapesHeroBest') || '0', 10);
+
+    document.getElementById('bestScoreText').textContent = bestScore;
+    document.getElementById('headerStars').textContent = bestScore;
+
+    const quizQuestions = [
+      {
+        category: 'הֶקֵּף • רִבּוּעַ',
+        prompt: 'לְדָנִי יֵשׁ גִּנָּה מְרֻבַּעַת בְּאֹרֶךְ 5 מֶטְרִים בְּכָל צַד. כַּמָּה גָּדֵר (הֶקֵּף) הוּא צָרִיךְ לִקְנוֹת מִסָּבִיב?',
+        shapeType: 'square',
+        param: { a: 5 },
+        correct: 20,
+        unit: 'מֶטֶר',
+        options: [15, 20, 25, 10],
+        explanation: 'הֶקֵּף רִבּוּעַ הוּא חִבּוּר 4 הַצְּלָעוֹת: 5 + 5 + 5 + 5 = 20 מֶטֶר!'
+      },
+      {
+        category: 'שֶׁטַח • מַלְבֵּן',
+        prompt: 'חֲדַר הַמִּשְׂחָקִים הוּא מַלְבֵּן: אָרְכּוֹ 6 מֶטְרִים וְרָחְבּוֹ 3 מֶטְרִים. כַּמָּה שָׁטִיחַ (שֶׁטַח) נִצְטָרֵךְ לָרִצְפָּה?',
+        shapeType: 'rectangle',
+        param: { w: 6, h: 3 },
+        correct: 18,
+        unit: 'מ״ר',
+        options: [18, 9, 24, 12],
+        explanation: 'שֶׁטַח מַלְבֵּן = אֹרֶךְ × רֹחַב: 6 × 3 = 18 מֶטֶר רָבוּעַ!'
+      },
+      {
+        category: 'נֶפַח • קֻבִּיָּה',
+        prompt: 'קֻבִּיַּת מִשְׂחָק עֲנָקִית נִבְנְתָה בְּאֹרֶךְ 3 ס״מ בְּכָל צֶלַע. מָה הוּא נֶפַח הַקֻּבִּיָּה (כַּמָּה קֻבְיוֹת סֻכָּר יִכָּנְסוּ בָּהּ)?',
+        shapeType: 'cube',
+        param: { a: 3 },
+        correct: 27,
+        unit: 'סמ״ק',
+        options: [9, 18, 27, 36],
+        explanation: 'נֶפַח קֻבִּיָּה = צֶלַע × צֶלַע × צֶלַע: 3 × 3 × 3 = 27 סמ״ק!'
+      },
+      {
+        category: 'הֶקֵּף • מַלְבֵּן',
+        prompt: 'תְּמוּנָה מַלְבַּנְתִּית עִם אֹרֶךְ 8 ס״מ וְרֹחַב 4 ס״מ. מָה הוּא אֹרֶךְ מִסְגֶּרֶת הַתְּמוּנָה (הַהֶקֵּף)?',
+        shapeType: 'rectangle',
+        param: { w: 8, h: 4 },
+        correct: 24,
+        unit: 'ס״מ',
+        options: [32, 24, 16, 20],
+        explanation: 'הֶקֵּף מַלְבֵּן הוּא סְכוּם כָּל הַצְּלָעוֹת: 8 + 4 + 8 + 4 = 24 ס״מ!'
+      },
+      {
+        category: 'שֶׁטַח • מְשֻׁלָּשׁ',
+        prompt: 'מְשֻׁלָּשׁ תַּמְרוּר בְּעַל בָּסִיס שֶׁל 10 ס״מ וְגֹבַהּ שֶׁל 4 ס״מ. מָה שִׁטְחוֹ שֶׁל הַמְּשֻׁלָּשׁ?',
+        shapeType: 'triangle',
+        param: { b: 10, h: 4 },
+        correct: 20,
+        unit: 'סמ״ר',
+        options: [40, 20, 14, 30],
+        explanation: 'שֶׁטַח מְשֻׁלָּשׁ = (בָּסִיס × גֹּבַהּ) ÷ 2: (10 × 4) ÷ 2 = 20 סמ״ר!'
+      },
+      {
+        category: 'נֶפַח • תֵּבָה',
+        prompt: 'קֻפְסַת מַמְתַּקִּים: אֹרֶךְ 5 ס״מ, רֹחַב 4 ס״מ וְגֹבַהּ 2 ס״מ. מָה הוּא נֶפַח הַקֻּפְסָה?',
+        shapeType: 'cuboid',
+        param: { l: 5, w: 4, h: 2 },
+        correct: 40,
+        unit: 'סמ״ק',
+        options: [20, 30, 40, 50],
+        explanation: 'נֶפַח תֵּבָה = אֹרֶךְ × רֹחַב × גֹּבַהּ: 5 × 4 × 2 = 40 סמ״ק!'
+      }
+    ];
+
+    function initGameIfEmpty() {
+      if (document.getElementById('quizAnswersGrid').children.length === 0) {
+        loadQuestion(0);
+      }
+    }
+
+    function loadQuestion(idx) {
+      currentQIdx = idx % quizQuestions.length;
+      const q = quizQuestions[currentQIdx];
+
+      document.getElementById('questionCategory').textContent = `שְׁאֵלָה ${currentQIdx + 1} מִתּוֹךְ ${quizQuestions.length} • ${q.category}`;
+      document.getElementById('questionPrompt').textContent = q.prompt;
+
+      const fb = document.getElementById('quizFeedback');
+      fb.className = 'hidden p-3.5 rounded-2xl text-center font-black text-sm';
+      fb.textContent = '';
+
+      document.getElementById('nextQuestionBtn').classList.add('hidden');
+
+      renderQuizSvg(q);
+
+      const grid = document.getElementById('quizAnswersGrid');
+      grid.innerHTML = '';
+
+      const shuffled = [...q.options].sort(() => Math.random() - 0.5);
+
+      shuffled.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'tactile-btn answer-btn py-3.5 px-4 rounded-2xl border-3 border-slate-200 bg-white hover:bg-purple-50 font-black text-slate-800 text-lg shadow-btn-white flex items-center justify-center gap-2';
+        btn.innerHTML = `<span>⭐</span> <span>${opt} ${q.unit}</span>`;
+        btn.onclick = () => checkAnswer(opt, q, btn);
+        grid.appendChild(btn);
+      });
+    }
+
+    function checkAnswer(chosen, q, btn) {
+      const isCorrect = chosen === q.correct;
+      const fb = document.getElementById('quizFeedback');
+      const allBtns = document.querySelectorAll('.answer-btn');
+
+      allBtns.forEach(b => b.disabled = true);
+
+      if (isCorrect) {
+        playSound('success');
+        triggerConfetti();
+        btn.classList.remove('bg-white', 'border-slate-200', 'shadow-btn-white');
+        btn.classList.add('bg-kid-green', 'text-white', 'border-green-600', 'shadow-btn-green');
+
+        quizScore += 10;
+        streakCount++;
+        if (quizScore > bestScore) {
+          bestScore = quizScore;
+          localStorage.setItem('shapesHeroBest', bestScore.toString());
+          document.getElementById('bestScoreText').textContent = bestScore;
+          document.getElementById('headerStars').textContent = bestScore;
+        }
+        document.getElementById('quizScoreText').textContent = quizScore;
+
+        fb.className = 'block p-3.5 rounded-2xl text-center font-black text-sm bg-green-100 text-green-900 border-2 border-green-300';
+        fb.innerHTML = `🎉 כָּל הַכָּבוֹד! תְּשׁוּבָה נְכוֹנָה! <br><span class="text-xs font-semibold">${q.explanation}</span>`;
+        setMascot("יֵשׁ! תְּשׁוּבָה נְכוֹנָה וּמֻשְׁלֶמֶת! הִמְשִׁיכוּ כָּכָה! 🌟", "גֵּאִים בָּכֶם 💖");
+      } else {
+        playSound('wrong');
+        btn.classList.remove('bg-white', 'border-slate-200', 'shadow-btn-white');
+        btn.classList.add('bg-kid-coral', 'text-white', 'border-red-600', 'shadow-btn-coral');
+
+        allBtns.forEach(b => {
+          if (b.textContent.includes(q.correct.toString())) {
+            b.classList.add('bg-green-100', 'border-green-400', 'text-green-900');
+          }
+        });
+
+        streakCount = 0;
+        fb.className = 'block p-3.5 rounded-2xl text-center font-black text-sm bg-rose-100 text-rose-900 border-2 border-rose-300';
+        fb.innerHTML = `לֹא נוֹרָא, מִטָּעֻיּוֹת לוֹמְדִים! 😊 <br><span class="text-xs font-semibold">${q.explanation}</span>`;
+        setMascot("לֹא נוֹרָא, נַסּוּ שׁוּב בַּשְּׁאֵלָה הַבָּאָה! אֲנִי בָּטוּחַ שֶׁתַּצְלִיחוּ! 💪", "מְעוֹדְדִים 🌈");
+      }
+
+      updateStreaksUI();
+      document.getElementById('nextQuestionBtn').classList.remove('hidden');
+    }
+
+    function updateStreaksUI() {
+      const container = document.getElementById('streakIcons');
+      const stars = Math.min(3, streakCount);
+      let html = '';
+      for (let i = 0; i < 3; i++) {
+        if (i < stars) {
+          html += '<i class="fa-solid fa-fire text-amber-500 text-xl animate-bounce"></i>';
+        } else {
+          html += '<i class="fa-solid fa-fire text-slate-300 text-lg"></i>';
+        }
+      }
+      container.innerHTML = html;
+    }
+
+    function nextQuestion() {
+      playSound('pop');
+      loadQuestion(currentQIdx + 1);
+    }
+
+    function renderQuizSvg(q) {
+      const svg = document.getElementById('quizSvg');
+      svg.innerHTML = '';
+      const cx = 100;
+      const cy = 60;
+
+      if (q.shapeType === 'square') {
+        const size = 65;
+        const r = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        r.setAttribute('x', cx - size/2);
+        r.setAttribute('y', cy - size/2);
+        r.setAttribute('width', size);
+        r.setAttribute('height', size);
+        r.setAttribute('rx', '8');
+        r.setAttribute('fill', '#FFC837');
+        r.setAttribute('stroke', '#3C3C3C');
+        r.setAttribute('stroke-width', '2.5');
+        svg.appendChild(r);
+        addCuteFace(svg, cx, cy, 10);
+        addMeasureLabel(svg, `${q.param.a} ס״מ`, cx, cy - size/2 - 8, 'middle');
+      } else if (q.shapeType === 'rectangle') {
+        const w = 100;
+        const h = 50;
+        const r = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        r.setAttribute('x', cx - w/2);
+        r.setAttribute('y', cy - h/2);
+        r.setAttribute('width', w);
+        r.setAttribute('height', h);
+        r.setAttribute('rx', '8');
+        r.setAttribute('fill', '#1CB0F6');
+        r.setAttribute('stroke', '#3C3C3C');
+        r.setAttribute('stroke-width', '2.5');
+        svg.appendChild(r);
+        addCuteFace(svg, cx, cy, 12);
+        addMeasureLabel(svg, `${q.param.w} ס״מ`, cx, cy - h/2 - 8, 'middle');
+        addMeasureLabel(svg, `${q.param.h} ס״מ`, cx - w/2 - 12, cy + 4, 'end');
+      } else if (q.shapeType === 'triangle') {
+        const w = 85;
+        const h = 55;
+        const x1 = cx - w/2;
+        const y1 = cy + h/2;
+        const poly = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+        poly.setAttribute('points', `${x1},${y1} ${x1+w},${y1} ${x1},${y1-h}`);
+        poly.setAttribute('fill', '#58CC02');
+        poly.setAttribute('stroke', '#3C3C3C');
+        poly.setAttribute('stroke-width', '2.5');
+        svg.appendChild(poly);
+        addCuteFace(svg, x1 + w/3, y1 - h/3, 8);
+        addMeasureLabel(svg, `בָּסִיס ${q.param.b}`, cx, y1 + 16, 'middle');
+        addMeasureLabel(svg, `גֹּבַהּ ${q.param.h}`, x1 - 12, cy, 'end');
+      } else if (q.shapeType === 'cube' || q.shapeType === 'cuboid') {
+        const size = 50;
+        const r = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+        r.setAttribute('x', cx - size/2);
+        r.setAttribute('y', cy - size/2);
+        r.setAttribute('width', size);
+        r.setAttribute('height', size);
+        r.setAttribute('rx', '6');
+        r.setAttribute('fill', '#20D3C2');
+        r.setAttribute('stroke', '#3C3C3C');
+        r.setAttribute('stroke-width', '2.5');
+        svg.appendChild(r);
+        addCuteFace(svg, cx, cy, 10);
+        addMeasureLabel(svg, `תְּלַת-מְמַד 3D`, cx, cy + 38, 'middle', '#0D9488');
+      }
+    }
+
+    /* =========================================================
+       8. INIT ON LOAD
+       ========================================================= */
+    window.addEventListener('DOMContentLoaded', () => {
+      buildSliders2D();
+      render2D();
+
+      buildSliders3D();
+      render3D();
+
+      loadQuestion(0);
+    });
+  </script>
+</body>
+</html>
